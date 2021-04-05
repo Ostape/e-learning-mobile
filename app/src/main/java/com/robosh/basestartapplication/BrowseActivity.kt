@@ -21,7 +21,7 @@ class BrowseActivity : AppCompatActivity() {
     private fun setupViews() {
         val navController = findNavController(R.id.distanceNavHostFragment)
         bottomNavView.setupWithNavController(navController)
-        var appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
                 R.id.homeFragment,
                 R.id.detailsMovieFragment,
