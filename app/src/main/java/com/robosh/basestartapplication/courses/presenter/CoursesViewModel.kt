@@ -1,4 +1,4 @@
-package com.robosh.basestartapplication.home.presenter
+package com.robosh.basestartapplication.courses.presenter
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class CoursesViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 

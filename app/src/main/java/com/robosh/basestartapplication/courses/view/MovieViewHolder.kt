@@ -1,4 +1,4 @@
-package com.robosh.basestartapplication.home.view
+package com.robosh.basestartapplication.courses.view
 
 import android.view.LayoutInflater
 import android.view.View

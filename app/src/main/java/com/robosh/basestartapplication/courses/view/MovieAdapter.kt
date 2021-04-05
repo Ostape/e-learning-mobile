@@ -1,4 +1,4 @@
-package com.robosh.basestartapplication.home.view
+package com.robosh.basestartapplication.courses.view
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +11,10 @@ class MovieAdapter(
     private val movies = ArrayList<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder.create(parent, clickListener)
+        return MovieViewHolder.create(
+            parent,
+            clickListener
+        )
     }
 
     override fun getItemCount() = movies.size

@@ -1,4 +1,4 @@
-package com.robosh.basestartapplication.home.view
+package com.robosh.basestartapplication.courses.view
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -18,8 +17,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
+import com.robosh.basestartapplication.courses.presenter.CoursesViewModel
 import com.robosh.basestartapplication.databinding.FragmentHomeBinding
-import com.robosh.basestartapplication.home.presenter.HomeViewModel
 import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.model.MovieEvent
 import com.robosh.basestartapplication.model.MovieState
@@ -31,15 +30,19 @@ import kotlinx.coroutines.flow.onEach
 import java.util.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MovieClickCallback {
+class CoursesFragment : Fragment(), MovieClickCallback {
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val coursesViewModel: CoursesViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieAdapter = MovieAdapter(MovieClickListenerFactoryImpl(this))
+        movieAdapter = MovieAdapter(
+            MovieClickListenerFactoryImpl(
+                this
+            )
+        )
     }
 
     override fun onCreateView(
@@ -55,22 +58,22 @@ class HomeFragment : Fragment(), MovieClickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        homeViewModel.state.onEach {
+        coursesViewModel.state.onEach {
             render(it)
         }.launchIn(lifecycleScope)
-        homeViewModel.intentChannel.offer(MovieEvent.MoviesFetch)
+        coursesViewModel.intentChannel.offer(MovieEvent.MoviesFetch)
     }
 
     private fun initRecyclerView() {
         with(binding.listOfMoviesRecyclerView) {
             setHasFixedSize(true)
             adapter = movieAdapter
-            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@CoursesFragment.requireContext())
         }
     }
 
     override fun onMovieRemindClicked(movie: Movie) {
-        homeViewModel.intentChannel.offer(MovieEvent.MovieClicked(movie))
+        coursesViewModel.intentChannel.offer(MovieEvent.MovieClicked(movie))
     }
 
     private fun render(movieState: MovieState) {

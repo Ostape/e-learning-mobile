@@ -7,4 +7,5 @@
     <string name="movie_notification_description">It`s time to watch this film!</string>
     <string name="channel_name">Movie Alarm Channel</string>
     <string name="channel_description">This notification will show the film which you picked</string>
+    <string name="news_title">Новини</string>
 </resources>

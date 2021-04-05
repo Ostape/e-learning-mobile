@@ -25,7 +25,8 @@ class BrowseActivity : AppCompatActivity() {
             topLevelDestinationIds = setOf(
                 R.id.homeFragment,
                 R.id.detailsMovieFragment,
-                R.id.loginFragment
+                R.id.loginFragment,
+                R.id.newsFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

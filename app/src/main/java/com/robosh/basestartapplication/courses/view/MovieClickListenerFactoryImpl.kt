@@ -1,6 +1,8 @@
-package com.robosh.basestartapplication.home.view
+package com.robosh.basestartapplication.courses.view
 
 import android.view.View
+import com.robosh.basestartapplication.courses.view.MovieClickCallback
+import com.robosh.basestartapplication.courses.view.MovieClickListenerFactory
 import com.robosh.basestartapplication.model.Movie
 
 class MovieClickListenerFactoryImpl constructor(

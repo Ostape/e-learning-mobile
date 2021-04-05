@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/newsFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.robosh.basestartapplication.home.view.HomeFragment"
+        android:name="com.robosh.basestartapplication.courses.view.CoursesFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_detailsMovieFragment"
@@ -39,4 +39,9 @@
         android:id="@+id/registerFragment"
         android:name="com.robosh.basestartapplication.register.RegisterFragment"
         android:label="RegisterFragment" />
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.robosh.basestartapplication.home.view.NewsFragment"
+        android:label="@string/news_title" />
 </navigation>
