@@ -25,4 +25,8 @@
         app:popEnterAnim="@anim/slide_in_from_left"
         app:popExitAnim="@anim/slide_out_to_right">
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.robosh.basestartapplication.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>
