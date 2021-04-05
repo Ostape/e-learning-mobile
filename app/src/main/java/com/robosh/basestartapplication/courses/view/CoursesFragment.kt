@@ -18,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.courses.presenter.CoursesViewModel
-import com.robosh.basestartapplication.databinding.FragmentHomeBinding
+import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
 import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.model.MovieEvent
 import com.robosh.basestartapplication.model.MovieState
@@ -33,7 +33,7 @@ import java.util.*
 class CoursesFragment : Fragment(), CoursesClickCallback {
 
     private val coursesViewModel: CoursesViewModel by viewModels()
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentCoursesBinding
     private lateinit var coursesAdapter: CoursesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class CoursesFragment : Fragment(), CoursesClickCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentCoursesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
