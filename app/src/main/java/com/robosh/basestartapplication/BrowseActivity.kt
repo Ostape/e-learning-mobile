@@ -3,7 +3,8 @@ package com.robosh.basestartapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_browse.*
@@ -17,11 +18,16 @@ class BrowseActivity : AppCompatActivity() {
         setupViews()
     }
 
-    fun setupViews() {
-        // Finding the Navigation Controller
-        var navController = findNavController(R.id.distanceNavHostFragment)
-
-        // Setting Navigation Controller with the BottomNavigationView
+    private fun setupViews() {
+        val navController = findNavController(R.id.distanceNavHostFragment)
         bottomNavView.setupWithNavController(navController)
+        var appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                R.id.homeFragment,
+                R.id.detailsMovieFragment,
+                R.id.loginFragment
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }
