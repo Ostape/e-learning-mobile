@@ -5,17 +5,23 @@
     app:startDestination="@id/newsFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/newsFragment"
+        android:name="com.robosh.basestartapplication.home.view.NewsFragment"
+        android:label="@string/news_title" />
+
+    <fragment
+        android:id="@+id/coursesFragment"
         android:name="com.robosh.basestartapplication.courses.view.CoursesFragment"
-        android:label="HomeFragment">
-        <action
-            android:id="@+id/action_homeFragment_to_detailsMovieFragment"
-            app:destination="@id/detailsMovieFragment"
-            app:enterAnim="@anim/slide_in_to_right"
-            app:exitAnim="@anim/slide_out_to_left"
-            app:popEnterAnim="@anim/slide_in_from_left"
-            app:popExitAnim="@anim/slide_out_to_right" />
-    </fragment>
+        android:label="@string/courses_title" />
+
+    <!--    <action-->
+    <!--        android:id="@+id/action_homeFragment_to_detailsMovieFragment"-->
+    <!--        app:destination="@id/detailsMovieFragment"-->
+    <!--        app:enterAnim="@anim/slide_in_to_right"-->
+    <!--        app:exitAnim="@anim/slide_out_to_left"-->
+    <!--        app:popEnterAnim="@anim/slide_in_from_left"-->
+    <!--        app:popExitAnim="@anim/slide_out_to_right" />-->
+
     <fragment
         android:id="@+id/detailsMovieFragment"
         android:name="com.robosh.basestartapplication.detail.view.DetailFragment"
@@ -23,12 +29,12 @@
         app:enterAnim="@anim/slide_in_to_right"
         app:exitAnim="@anim/slide_out_to_left"
         app:popEnterAnim="@anim/slide_in_from_left"
-        app:popExitAnim="@anim/slide_out_to_right">
-    </fragment>
+        app:popExitAnim="@anim/slide_out_to_right" />
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.robosh.basestartapplication.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -40,8 +46,4 @@
         android:name="com.robosh.basestartapplication.register.RegisterFragment"
         android:label="RegisterFragment" />
 
-    <fragment
-        android:id="@+id/newsFragment"
-        android:name="com.robosh.basestartapplication.home.view.NewsFragment"
-        android:label="@string/news_title" />
 </navigation>

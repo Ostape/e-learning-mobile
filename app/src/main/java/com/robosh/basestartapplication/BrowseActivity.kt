@@ -23,7 +23,7 @@ class BrowseActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
         val appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
-                R.id.homeFragment,
+                R.id.coursesFragment,
                 R.id.detailsMovieFragment,
                 R.id.loginFragment,
                 R.id.newsFragment

@@ -5,8 +5,8 @@
         android:title="@string/news_title"
         android:icon="@drawable/ic_baseline_home_24"/>
 
-    <item android:id="@+id/detailsMovieFragment"
-        android:title="Search"
+    <item android:id="@+id/coursesFragment"
+        android:title="@string/courses_title"
         android:icon="@drawable/ic_baseline_search_24"/>
 
     <item android:id="@+id/loginFragment"
