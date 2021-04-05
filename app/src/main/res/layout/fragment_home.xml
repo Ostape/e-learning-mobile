@@ -26,6 +26,6 @@
         android:id="@+id/listOfMoviesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/view_holder_movie" />
+        tools:listitem="@layout/view_holder_course" />
 
 </FrameLayout>
