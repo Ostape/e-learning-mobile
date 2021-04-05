@@ -1,5 +1,6 @@
 package com.robosh.basestartapplication.home.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,5 +19,12 @@ class NewsFragment : Fragment() {
     ): View? {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.webview.settings.javaScriptEnabled = true
+        binding.webview.loadUrl("https://www.pravda.com.ua/news/2021/04/5/7289114/")
     }
 }
