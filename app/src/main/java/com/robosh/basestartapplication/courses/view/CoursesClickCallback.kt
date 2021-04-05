@@ -2,7 +2,7 @@ package com.robosh.basestartapplication.courses.view
 
 import com.robosh.basestartapplication.model.Movie
 
-interface MovieClickCallback {
+interface CoursesClickCallback {
 
-    fun onMovieRemindClicked(movie: Movie)
+    fun onCourseClicked(movie: Movie)
 }

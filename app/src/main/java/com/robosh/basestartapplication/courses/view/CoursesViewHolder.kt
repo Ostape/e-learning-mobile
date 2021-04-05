@@ -10,17 +10,17 @@ import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.net.api.MovieDbApi.Companion.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
 
-class MovieViewHolder private constructor(
+class CoursesViewHolder private constructor(
     view: View,
-    private val clickListener: MovieClickListenerFactory
+    private val clickListener: CoursesClickListenerFactory
 ) : RecyclerView.ViewHolder(view) {
 
     companion object {
         fun create(
             parent: ViewGroup,
-            clickListener: MovieClickListenerFactory
-        ): MovieViewHolder {
-            return MovieViewHolder(
+            clickListener: CoursesClickListenerFactory
+        ): CoursesViewHolder {
+            return CoursesViewHolder(
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.view_holder_course, parent, false),
                 clickListener

@@ -30,16 +30,16 @@ import kotlinx.coroutines.flow.onEach
 import java.util.*
 
 @AndroidEntryPoint
-class CoursesFragment : Fragment(), MovieClickCallback {
+class CoursesFragment : Fragment(), CoursesClickCallback {
 
     private val coursesViewModel: CoursesViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var coursesAdapter: CoursesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieAdapter = MovieAdapter(
-            MovieClickListenerFactoryImpl(
+        coursesAdapter = CoursesAdapter(
+            CoursesClickListenerFactoryImpl(
                 this
             )
         )
@@ -67,12 +67,12 @@ class CoursesFragment : Fragment(), MovieClickCallback {
     private fun initRecyclerView() {
         with(binding.listOfMoviesRecyclerView) {
             setHasFixedSize(true)
-            adapter = movieAdapter
+            adapter = coursesAdapter
             layoutManager = LinearLayoutManager(this@CoursesFragment.requireContext())
         }
     }
 
-    override fun onMovieRemindClicked(movie: Movie) {
+    override fun onCourseClicked(movie: Movie) {
         coursesViewModel.intentChannel.offer(MovieEvent.MovieClicked(movie))
     }
 
@@ -90,7 +90,7 @@ class CoursesFragment : Fragment(), MovieClickCallback {
     private fun showMoviesData(movieState: MovieState.DataListState) {
         hideLoader()
         binding.listOfMoviesRecyclerView.visibility = VISIBLE
-        movieAdapter.setData(movieState.data)
+        coursesAdapter.setData(movieState.data)
     }
 
     private fun showLoader() {
