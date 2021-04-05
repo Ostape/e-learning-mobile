@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".player.view.YouTubePlayerActivity"/>
+
         <receiver android:name=".receiver.AlarmNotificationReceiver" />
     </application>
 
