@@ -28,7 +28,8 @@
 
             <TextView
                 android:id="@+id/detailCourseTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toStartOf="@id/kostyli"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:textSize="@dimen/normal_text_size"
@@ -36,6 +37,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailCourseImage"
                 tools:text="Some TItle" />
+
+            <View
+                android:id="@+id/kostyli"
+                android:layout_width="140dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/detailCourseImage"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <RatingBar
                 android:id="@+id/rating"
@@ -72,6 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@id/detailCourseDescription" />
 
             <LinearLayout
+                android:id="@+id/lessonsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -83,6 +92,31 @@
                 <include layout="@layout/view_holder_course_lesson" />
 
                 <include layout="@layout/view_holder_course_lesson" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/commentsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Коментарі"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lessonsRecyclerView" />
+
+            <LinearLayout
+                android:id="@+id/commentsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/commentsTextView">
+
+                <include layout="@layout/view_holder_comments" />
+                
+                <include layout="@layout/view_holder_comments" />
 
             </LinearLayout>
 
