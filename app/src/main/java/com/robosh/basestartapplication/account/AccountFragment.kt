@@ -26,4 +26,11 @@ class AccountFragment : Fragment() {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.wishListButton.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_wishListFragment)
+        }
+    }
 }

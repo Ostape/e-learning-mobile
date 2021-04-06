@@ -31,16 +31,8 @@
         android:id="@+id/loginFragment"
         android:name="com.robosh.basestartapplication.login.LoginFragment"
         android:label="LoginFragment">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="false" />
     </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.robosh.basestartapplication.register.RegisterFragment"
-        android:label="RegisterFragment" />
+
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.robosh.basestartapplication.account.AccountFragment"
@@ -48,6 +40,17 @@
         <action
             android:id="@+id/action_accountFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment"
+            app:enterAnim="@anim/slide_in_to_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.robosh.basestartapplication.wishlist.WishListFragment"
+        android:label="Збереженні" />
 
 </navigation>
