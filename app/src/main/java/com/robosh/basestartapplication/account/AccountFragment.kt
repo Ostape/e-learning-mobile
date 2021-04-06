@@ -38,6 +38,10 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initClickListeners()
+    }
+
+    private fun initClickListeners() {
         binding.wishListButton.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_wishListFragment)
         }
@@ -48,7 +52,6 @@ class AccountFragment : Fragment() {
             AlertDialog.Builder(context)
                 .setTitle("Вийти з акаунту?")
                 .setMessage("Ви впевненні що хочете вийти з аккаунту?")
-                // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton("Вийти") { _, _ ->
                     val sharedPreferences =
                         requireActivity().getSharedPreferences(
