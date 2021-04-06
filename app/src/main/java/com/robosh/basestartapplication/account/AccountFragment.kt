@@ -32,5 +32,8 @@ class AccountFragment : Fragment() {
         binding.wishListButton.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_wishListFragment)
         }
+        binding.certificateId.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_certificateFragment)
+        }
     }
 }

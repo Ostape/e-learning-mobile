@@ -30,13 +30,12 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.robosh.basestartapplication.login.LoginFragment"
-        android:label="LoginFragment">
-    </fragment>
+        android:label="LoginFragment" />
 
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.robosh.basestartapplication.account.AccountFragment"
-        android:label="@string/account" >
+        android:label="@string/account">
         <action
             android:id="@+id/action_accountFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -46,11 +45,23 @@
             app:enterAnim="@anim/slide_in_to_right"
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
-            app:popExitAnim="@anim/slide_out_to_right"/>
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_accountFragment_to_certificateFragment"
+            app:destination="@id/certificateFragment"
+            app:enterAnim="@anim/slide_in_to_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
         android:name="com.robosh.basestartapplication.wishlist.WishListFragment"
         android:label="Збереженні" />
+
+    <fragment
+        android:id="@+id/certificateFragment"
+        android:name="com.robosh.basestartapplication.certificates.CertificateFragment"
+        android:label="Сертифікати" />
 
 </navigation>
