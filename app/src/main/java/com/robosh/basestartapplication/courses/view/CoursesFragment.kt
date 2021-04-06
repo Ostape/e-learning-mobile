@@ -20,6 +20,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
+import com.robosh.basestartapplication.application.SHARED_PREFS_FILE
+import com.robosh.basestartapplication.application.USER_LOGGED_IN_TOKEN
 import com.robosh.basestartapplication.courses.presenter.CoursesViewModel
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickCallback
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickListenerFactoryImpl
@@ -31,13 +33,14 @@ import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.receiver.AlarmNotificationReceiver
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_browse.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.util.*
 
 @AndroidEntryPoint
-class DetailCoursesFragment : Fragment(),
+class CoursesFragment : Fragment(),
     DetailCoursesClickCallback, SubscribeCourseClickCallback {
 
     private val coursesViewModel: CoursesViewModel by viewModels()
@@ -75,7 +78,7 @@ class DetailCoursesFragment : Fragment(),
         with(binding.listOfMoviesRecyclerView) {
             setHasFixedSize(true)
             adapter = coursesAdapter
-            layoutManager = LinearLayoutManager(this@DetailCoursesFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@CoursesFragment.requireContext())
         }
     }
 
@@ -137,11 +140,16 @@ class DetailCoursesFragment : Fragment(),
     }
 
     private fun movieClicked(movie: Movie) {
-        showClickedMovieToast(movie).show()
-        val instance = Calendar.getInstance()
-//        instance.set(Calendar.HOUR, 9) // FYI: uncomment if needs to show alarm at 9 a.m.
-        instance.set(Calendar.SECOND, instance.get(Calendar.SECOND) + 20)
-        startAlarm(instance, movie)
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
+        if (sharedPreferences.getBoolean(USER_LOGGED_IN_TOKEN, false).not()) {
+            activity?.bottomNavView?.selectedItemId = R.id.accountFragment
+        }
+//        showClickedMovieToast(movie).show()
+//        val instance = Calendar.getInstance()
+////        instance.set(Calendar.HOUR, 9) // FYI: uncomment if needs to show alarm at 9 a.m.
+//        instance.set(Calendar.SECOND, instance.get(Calendar.SECOND) + 20)
+//        startAlarm(instance, movie)
     }
 
     private fun showClickedMovieToast(movie: Movie) =
