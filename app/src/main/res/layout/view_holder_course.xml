@@ -18,9 +18,11 @@
         android:padding="@dimen/standard_margin">
 
         <ImageView
-            android:id="@+id/movieImage"
-            android:layout_width="@dimen/image_icon_size"
-            android:layout_height="@dimen/image_icon_size"
+            android:id="@+id/courseImageId"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@mipmap/ic_launcher" />
@@ -29,57 +31,44 @@
             android:id="@+id/movieTitle"
             android:layout_width="@dimen/margin_none"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/xsmall_margin"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movieImage"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/courseImageId"
             tools:text="Movie Title" />
 
         <TextView
-            android:id="@+id/movieDescription"
+            android:id="@+id/courseDescription"
             android:layout_width="@dimen/margin_none"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/xsmall_margin"
             android:maxLines="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movieImage"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movieTitle"
             tools:text="Some movie description" />
 
-        <TextView
-            android:id="@+id/dateTitleTextView"
+        <RatingBar
+            android:id="@+id/rating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xsmall_margin"
-            android:text="@string/release_date"
+            android:layout_height="50dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:stepSize="0.1"
+            android:transformPivotX="0dp"
+            android:transformPivotY="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieImage" />
-
-        <TextView
-            android:id="@+id/movieDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/xxxsmal_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            app:layout_constraintStart_toEndOf="@id/dateTitleTextView"
-            app:layout_constraintTop_toBottomOf="@id/movieImage"
-            tools:text="10.10.2000" />
+            app:layout_constraintTop_toBottomOf="@id/courseDescription" />
 
         <Button
-            android:id="@+id/remindButton"
-            android:layout_width="@dimen/button_width"
+            android:id="@+id/registerCourseButton"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
-            android:text="@string/remind"
+            android:text="@string/register_course"
             android:textSize="@dimen/xsmal_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieImage" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider_size"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

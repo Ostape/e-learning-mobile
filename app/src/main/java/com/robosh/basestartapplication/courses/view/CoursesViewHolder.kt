@@ -32,11 +32,12 @@ class CoursesViewHolder private constructor(
 
     fun bind(movie: Movie) {
         with(binding) {
-            Picasso.get().load(IMAGE_BASE_URL + movie.posterUrl).into(movieImage)
+            Picasso.get().load(IMAGE_BASE_URL + movie.posterUrl).into(courseImageId)
             movieTitle.text = movie.title
-            movieDescription.text = movie.description
-            movieDate.text = movie.date
-            remindButton.setOnClickListener(clickListener.createOnClickListener(movie))
+            courseDescription.text = movie.description
+//            movieDate.text = movie.date
+            registerCourseButton.setOnClickListener(clickListener.createOnClickListener(movie))
+            rating.rating = 4f
         }
     }
 }
