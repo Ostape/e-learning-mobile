@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface MovieDbApi {
+interface ElearningApi {
 
     companion object {
         private const val API_KEY = "bf0af36b6b0149089510541e46af70f9"

@@ -9,7 +9,7 @@ import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickLis
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactory
 import com.robosh.basestartapplication.databinding.ViewHolderCourseBinding
 import com.robosh.basestartapplication.model.Movie
-import com.robosh.basestartapplication.net.api.MovieDbApi.Companion.IMAGE_BASE_URL
+import com.robosh.basestartapplication.net.api.ElearningApi.Companion.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
 
 class CoursesViewHolder private constructor(

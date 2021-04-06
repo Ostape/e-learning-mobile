@@ -14,7 +14,7 @@ import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
-import com.robosh.basestartapplication.net.api.MovieDbApi
+import com.robosh.basestartapplication.net.api.ElearningApi
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -75,7 +75,7 @@ class DetailCourseFragment : Fragment() {
         with(binding) {
             detailMovieContent.visibility = VISIBLE
             detailCourseDescription.text = courseState.movie.description
-            Picasso.get().load(MovieDbApi.IMAGE_BASE_URL + courseState.movie.posterUrl)
+            Picasso.get().load(ElearningApi.IMAGE_BASE_URL + courseState.movie.posterUrl)
                 .into(detailCourseImage)
             detailCourseTitle.text = courseState.movie.title
         }
