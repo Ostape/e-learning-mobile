@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.robosh.basestartapplication.login.LoginFragment"
+        android:name="com.robosh.basestartapplication.login.view.LoginFragment"
         android:label="Логін" >
         <action
             android:id="@+id/action_loginFragment_to_accountFragment"
