@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
+class DetailCourseFragment : Fragment() {
 
     private val detailViewModel: DetailViewModel by viewModels()
     private lateinit var binding: FragmentDetailBinding

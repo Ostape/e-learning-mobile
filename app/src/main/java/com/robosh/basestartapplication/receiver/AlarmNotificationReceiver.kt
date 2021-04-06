@@ -9,7 +9,6 @@ import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavDeepLinkBuilder
@@ -56,7 +55,7 @@ class AlarmNotificationReceiver : BroadcastReceiver() {
         return NavDeepLinkBuilder(context)
             .setComponentName(BrowseActivity::class.java)
             .setGraph(R.navigation.navigation_graph)
-            .setDestination(R.id.detailsMovieFragment)
+            .setDestination(R.id.detailsCourseFragment)
             .setArguments(Bundle().apply { putInt(INTENT_MOVIE_KEY, movieId) })
             .createPendingIntent()
     }

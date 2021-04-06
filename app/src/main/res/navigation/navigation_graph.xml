@@ -11,20 +11,20 @@
 
     <fragment
         android:id="@+id/coursesFragment"
-        android:name="com.robosh.basestartapplication.courses.view.CoursesFragment"
-        android:label="@string/courses_title" />
-
-    <!--    <action-->
-    <!--        android:id="@+id/action_homeFragment_to_detailsMovieFragment"-->
-    <!--        app:destination="@id/detailsMovieFragment"-->
-    <!--        app:enterAnim="@anim/slide_in_to_right"-->
-    <!--        app:exitAnim="@anim/slide_out_to_left"-->
-    <!--        app:popEnterAnim="@anim/slide_in_from_left"-->
-    <!--        app:popExitAnim="@anim/slide_out_to_right" />-->
+        android:name="com.robosh.basestartapplication.courses.view.DetailCoursesFragment"
+        android:label="@string/courses_title">
+        <action
+            android:id="@+id/action_coursesFragment_to_detailsCourseFragment"
+            app:destination="@id/detailsCourseFragment"
+            app:enterAnim="@anim/slide_in_to_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
 
     <fragment
-        android:id="@+id/detailsMovieFragment"
-        android:name="com.robosh.basestartapplication.detail.view.DetailFragment"
+        android:id="@+id/detailsCourseFragment"
+        android:name="com.robosh.basestartapplication.detail.view.DetailCourseFragment"
         android:label="DetailsBookNoteFragment"
         app:enterAnim="@anim/slide_in_to_right"
         app:exitAnim="@anim/slide_out_to_left"

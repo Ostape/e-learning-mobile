@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -18,6 +19,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.courses.presenter.CoursesViewModel
+import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickCallback
+import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickListenerFactoryImpl
+import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickCallback
+import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactoryImpl
 import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
 import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.model.MovieEvent
@@ -30,7 +35,8 @@ import kotlinx.coroutines.flow.onEach
 import java.util.*
 
 @AndroidEntryPoint
-class CoursesFragment : Fragment(), CoursesClickCallback {
+class DetailCoursesFragment : Fragment(),
+    DetailCoursesClickCallback, SubscribeCourseClickCallback {
 
     private val coursesViewModel: CoursesViewModel by viewModels()
     private lateinit var binding: FragmentCoursesBinding
@@ -39,9 +45,8 @@ class CoursesFragment : Fragment(), CoursesClickCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         coursesAdapter = CoursesAdapter(
-            CoursesClickListenerFactoryImpl(
-                this
-            )
+            DetailCoursesClickListenerFactoryImpl(this),
+            SubscribeCourseClickListenerFactoryImpl(this)
         )
     }
 
@@ -68,12 +73,17 @@ class CoursesFragment : Fragment(), CoursesClickCallback {
         with(binding.listOfMoviesRecyclerView) {
             setHasFixedSize(true)
             adapter = coursesAdapter
-            layoutManager = LinearLayoutManager(this@CoursesFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@DetailCoursesFragment.requireContext())
         }
     }
 
-    override fun onCourseClicked(movie: Movie) {
+    override fun onSubscribeCourseClicked(movie: Movie) {
         coursesViewModel.intentChannel.offer(MovieEvent.MovieClicked(movie))
+        Log.d("TAGGERR", "SUBSCRIBE")
+    }
+
+    override fun onDetailCourseClicked(movie: Movie) {
+        Log.d("TAGGERR", "DETAIL")
     }
 
     private fun render(movieState: MovieState) {
