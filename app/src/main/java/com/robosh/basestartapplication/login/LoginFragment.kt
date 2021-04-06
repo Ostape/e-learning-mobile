@@ -27,14 +27,11 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.registerButton.setOnClickListener {
-////            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-//            startActivity(Intent(context, YouTubePlayerActivity::class.java))
+        binding.loginButton.setOnClickListener {
             val sharedPreferences =
                 requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
             sharedPreferences.edit().putBoolean(USER_LOGGED_IN_TOKEN, true).apply()
             findNavController().navigate(R.id.action_loginFragment_to_accountFragment)
         }
     }
-
 }
