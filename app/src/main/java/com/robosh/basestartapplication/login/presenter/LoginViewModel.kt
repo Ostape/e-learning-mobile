@@ -36,10 +36,13 @@ class LoginViewModel @Inject constructor(
     suspend fun obtainEvent() {
         intentChannel.consumeEach { loginEvent ->
             when (loginEvent) {
-                is LoginEvent.UserLoginClicked -> _state.value = authUseCase.execute(
-                    loginEvent.email,
-                    loginEvent.password
-                )
+                is LoginEvent.UserLoginClicked -> {
+                    _state.value = authUseCase.execute(
+                        loginEvent.email,
+                        loginEvent.password
+                    )
+                }
+                is LoginEvent.UpdateEvent -> _state.value = LoginState.LoginIdle
             }
         }
     }

@@ -10,6 +10,10 @@ class AuthUseCaseImpl @Inject constructor(
 
     override suspend fun execute(email: String, password: String): LoginState {
         authRepository.loginUser(email, password) // should get Return
-        return LoginState.LoginSuccess
+        return if (email == "orestshemelyuk@gmail.com" && password == "pass1") {
+            LoginState.LoginSuccess
+        } else {
+            LoginState.LoginError("Smth went wrong")
+        }
     }
 }

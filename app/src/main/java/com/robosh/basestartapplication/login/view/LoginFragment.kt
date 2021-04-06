@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,17 +49,25 @@ class LoginFragment : Fragment() {
     private fun render(loginState: LoginState) {
         when (loginState) {
             is LoginState.LoginSuccess -> navigateToAccountScreen()
-            is LoginState.LoginError -> Unit //todo show error message
+            is LoginState.LoginError -> showErrorMessage()
             is LoginState.LoginIdle -> Unit
         }
+    }
+
+    private fun showErrorMessage() {
+        binding.errorBanner.visibility = VISIBLE
+        binding.errorBanner.postDelayed({
+            binding.errorBanner.visibility = GONE
+        }, 1000)
+        loginViewModel.intentChannel.offer(LoginEvent.UpdateEvent)
     }
 
     private fun initClickListener() {
         binding.loginButton.setOnClickListener {
             loginViewModel.intentChannel.offer(
                 LoginEvent.UserLoginClicked(
-                    binding.emailInputEditText.toString(),
-                    binding.passwordInputEditText.toString()
+                    binding.emailInputEditText.text.toString(),
+                    binding.passwordInputEditText.text.toString()
                 )
             )
         }
