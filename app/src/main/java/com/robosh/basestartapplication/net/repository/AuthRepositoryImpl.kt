@@ -17,4 +17,8 @@ class AuthRepositoryImpl @Inject constructor(
 //        elearningApi.loginUser() should return Response
 //        return LoginState.LoginSuccess
     }
+
+    override fun getUser() {
+        // should return Response User
+    }
 }

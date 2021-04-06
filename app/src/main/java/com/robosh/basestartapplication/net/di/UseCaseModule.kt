@@ -24,4 +24,9 @@ object UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideAuthUseCase(getAuthUseCaseImpl: AuthUseCaseImpl): AuthUseCase = getAuthUseCaseImpl
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetUserDataUseCase(getUserDataUseCaseImpl: GetUserDataUseCaseImpl): GetUserDataUseCase =
+        getUserDataUseCaseImpl
 }

@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.robosh.basestartapplication.account.AccountFragment"
+        android:name="com.robosh.basestartapplication.account.view.AccountFragment"
         android:label="@string/account">
         <action
             android:id="@+id/action_accountFragment_to_loginFragment"
