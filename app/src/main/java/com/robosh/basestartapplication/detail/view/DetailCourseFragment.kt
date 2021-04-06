@@ -74,10 +74,10 @@ class DetailCourseFragment : Fragment() {
         hideLoader()
         with(binding) {
             detailMovieContent.visibility = VISIBLE
-            detailMovieDescription.text = courseState.movie.description
+            detailCourseDescription.text = courseState.movie.description
             Picasso.get().load(MovieDbApi.IMAGE_BASE_URL + courseState.movie.posterUrl)
-                .into(detailMovieImage)
-            detailMovieTitle.text = courseState.movie.title
+                .into(detailCourseImage)
+            detailCourseTitle.text = courseState.movie.title
         }
     }
 

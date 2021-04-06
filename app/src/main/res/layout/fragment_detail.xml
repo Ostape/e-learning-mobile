@@ -1,61 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/detailMovieContent"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/standard_margin"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/detailMovieImage"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailMovieContent"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/imageHeight"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:padding="@dimen/standard_margin"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/detailCourseImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/imageHeight"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detailCourseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailCourseImage"
+                tools:text="Some TItle" />
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:stepSize="0.1"
+                android:transformPivotX="240dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/detailCourseTitle" />
+
+            <TextView
+                android:id="@+id/detailCourseDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailCourseTitle"
+                tools:text="There are two methods setInitialDelay, one which expect a Duration as parameter, only in API 26 (because it comes from Java 8), the other which takes a duration and a timeunit, available on every platform. – NitroG42 Jul 13 '18 at 8:20" />
+
+            <TextView
+                android:id="@+id/lessonsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Уроки"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailCourseDescription" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/lessonsTextView">
+
+                <include layout="@layout/view_holder_course_lesson" />
+
+                <include layout="@layout/view_holder_course_lesson" />
+
+                <include layout="@layout/view_holder_course_lesson" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/progress_bar_size"
+            android:layout_height="@dimen/progress_bar_size"
+            android:layout_gravity="center"
+            tools:visibility="gone" />
 
         <TextView
-            android:id="@+id/detailMovieTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:textSize="@dimen/normal_text_size"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/detailMovieImage"
-            tools:text="Some TItle" />
-
-        <TextView
-            android:id="@+id/detailMovieDescription"
+            android:id="@+id/errorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/small_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailMovieTitle"
-            tools:text="There are two methods setInitialDelay, one which expect a Duration as parameter, only in API 26 (because it comes from Java 8), the other which takes a duration and a timeunit, available on every platform. – NitroG42 Jul 13 '18 at 8:20" />
+            android:layout_gravity="center"
+            android:text="@string/error_message"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/progress_bar_size"
-        android:layout_height="@dimen/progress_bar_size"
-        android:layout_gravity="center" />
-
-    <TextView
-        android:id="@+id/errorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/error_message"
-        android:textSize="@dimen/normal_text_size"
-        android:textStyle="bold"
-        android:visibility="gone" />
-
-</FrameLayout>
+</ScrollView>
