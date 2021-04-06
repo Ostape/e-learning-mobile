@@ -1,13 +1,16 @@
 package com.robosh.basestartapplication.login
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.robosh.basestartapplication.R
+import com.robosh.basestartapplication.application.SHARED_PREFS_FILE
+import com.robosh.basestartapplication.application.USER_LOGGED_IN_TOKEN
 import com.robosh.basestartapplication.databinding.FragmentLoginBinding
-import com.robosh.basestartapplication.player.view.YouTubePlayerActivity
 
 class LoginFragment : Fragment() {
 
@@ -25,8 +28,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.registerButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-            startActivity(Intent(context, YouTubePlayerActivity::class.java))
+////            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+//            startActivity(Intent(context, YouTubePlayerActivity::class.java))
+            val sharedPreferences =
+                requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
+            sharedPreferences.edit().putBoolean(USER_LOGGED_IN_TOKEN, true).apply()
+            findNavController().navigate(R.id.action_loginFragment_to_accountFragment)
         }
     }
 

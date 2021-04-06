@@ -30,7 +30,15 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.robosh.basestartapplication.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="Логін" >
+        <action
+            android:id="@+id/action_loginFragment_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:enterAnim="@anim/slide_in_to_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"/>
+    </fragment>
 
     <fragment
         android:id="@+id/accountFragment"

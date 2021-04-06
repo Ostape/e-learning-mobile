@@ -1,3 +1,5 @@
 package com.robosh.basestartapplication.application
 
 const val INTENT_MOVIE_KEY = "INTENT_MOVIE_KEY"
+const val SHARED_PREFS_FILE = "SHARED_PREFS_FILE"
+const val USER_LOGGED_IN_TOKEN = "USER_LOGGED_IN_TOKEN"
