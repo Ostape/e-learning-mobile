@@ -18,6 +18,11 @@ class BrowseActivity : AppCompatActivity() {
         setupViews()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.distanceNavHostFragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
     private fun setupViews() {
         val navController = findNavController(R.id.distanceNavHostFragment)
         bottomNavView.setupWithNavController(navController)

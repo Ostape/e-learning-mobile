@@ -3,8 +3,8 @@ package com.robosh.basestartapplication.detail.presenter
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.robosh.basestartapplication.model.MovieEvent
-import com.robosh.basestartapplication.model.MovieState
+import com.robosh.basestartapplication.model.CourseEvent
+import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.net.usecase.GetOneMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,9 +21,9 @@ class DetailViewModel @Inject constructor(
     private val getOneMovieUseCase: GetOneMovieUseCase
 ) : ViewModel() {
 
-    val intentChannel = Channel<MovieEvent>(Channel.UNLIMITED)
-    private val _state = MutableStateFlow<MovieState>(MovieState.LoadingState)
-    val state: StateFlow<MovieState>
+    val intentChannel = Channel<CourseEvent>(Channel.UNLIMITED)
+    private val _state = MutableStateFlow<CourseState>(CourseState.LoadingState)
+    val state: StateFlow<CourseState>
         get() = _state
 
     init {
@@ -36,11 +36,11 @@ class DetailViewModel @Inject constructor(
     suspend fun obtainEvent() {
         intentChannel.consumeEach { movieEvent ->
             when (movieEvent) {
-                is MovieEvent.MovieNotified -> {
+                is CourseEvent.CourseNotified -> {
                     _state.value = getOneMovieUseCase.execute(movieEvent.id)
                 }
-                is MovieEvent.MovieClicked -> Unit
-                is MovieEvent.MoviesFetch -> Unit
+                is CourseEvent.CourseSubscribeClicked -> Unit
+                is CourseEvent.CoursesFetch -> Unit
             }
         }
     }

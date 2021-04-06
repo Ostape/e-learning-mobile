@@ -3,8 +3,8 @@ package com.robosh.basestartapplication.courses.presenter
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.robosh.basestartapplication.model.MovieEvent
-import com.robosh.basestartapplication.model.MovieState
+import com.robosh.basestartapplication.model.CourseEvent
+import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.net.usecase.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,9 +21,9 @@ class CoursesViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 
-    val intentChannel = Channel<MovieEvent>(Channel.UNLIMITED)
-    private val _state = MutableStateFlow<MovieState>(MovieState.LoadingState)
-    val state: StateFlow<MovieState>
+    val intentChannel = Channel<CourseEvent>(Channel.UNLIMITED)
+    private val _state = MutableStateFlow<CourseState>(CourseState.LoadingState)
+    val state: StateFlow<CourseState>
         get() = _state
 
     init {
@@ -36,9 +36,13 @@ class CoursesViewModel @Inject constructor(
     suspend fun obtainEvent() {
         intentChannel.consumeEach { movieEvent ->
             when (movieEvent) {
-                is MovieEvent.MoviesFetch -> _state.value = getMoviesUseCase.execute()
-                is MovieEvent.MovieClicked -> _state.value = MovieState.MovieClickedState(movieEvent.movie)
-                is MovieEvent.MovieNotified -> Unit
+                is CourseEvent.CoursesFetch -> _state.value = getMoviesUseCase.execute()
+                is CourseEvent.CourseSubscribeClicked -> _state.value =
+                    CourseState.CourseSubscribeClickedState(movieEvent.movie)
+                is CourseEvent.CourseNotified -> Unit
+                is CourseEvent.CourseDetailClicked -> _state.value =
+                    CourseState.CourseDetailClickedState(movieEvent.movie)
+                is CourseEvent.CoursesIdle -> _state.value = CourseState.Idle
             }
         }
     }

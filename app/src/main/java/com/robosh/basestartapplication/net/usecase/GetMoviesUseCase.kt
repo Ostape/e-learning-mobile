@@ -1,8 +1,8 @@
 package com.robosh.basestartapplication.net.usecase
 
-import com.robosh.basestartapplication.model.MovieState
+import com.robosh.basestartapplication.model.CourseState
 
 interface GetMoviesUseCase {
 
-    suspend fun execute(): MovieState
+    suspend fun execute(): CourseState
 }

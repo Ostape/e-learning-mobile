@@ -16,7 +16,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.courses.presenter.CoursesViewModel
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickCallback
@@ -24,9 +26,9 @@ import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickLis
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickCallback
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactoryImpl
 import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
+import com.robosh.basestartapplication.model.CourseEvent
+import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.model.Movie
-import com.robosh.basestartapplication.model.MovieEvent
-import com.robosh.basestartapplication.model.MovieState
 import com.robosh.basestartapplication.receiver.AlarmNotificationReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -66,7 +68,7 @@ class DetailCoursesFragment : Fragment(),
         coursesViewModel.state.onEach {
             render(it)
         }.launchIn(lifecycleScope)
-        coursesViewModel.intentChannel.offer(MovieEvent.MoviesFetch)
+        coursesViewModel.intentChannel.offer(CourseEvent.CoursesFetch)
     }
 
     private fun initRecyclerView() {
@@ -78,29 +80,43 @@ class DetailCoursesFragment : Fragment(),
     }
 
     override fun onSubscribeCourseClicked(movie: Movie) {
-        coursesViewModel.intentChannel.offer(MovieEvent.MovieClicked(movie))
+        coursesViewModel.intentChannel.offer(CourseEvent.CourseSubscribeClicked(movie))
         Log.d("TAGGERR", "SUBSCRIBE")
     }
 
     override fun onDetailCourseClicked(movie: Movie) {
         Log.d("TAGGERR", "DETAIL")
+        findNavController().navigate(
+            R.id.action_coursesFragment_to_detailsCourseFragment,
+            Bundle().apply { putInt(INTENT_MOVIE_KEY, movie.id) }
+        )
+//        coursesViewModel.intentChannel.offer(CourseEvent.CourseDetailClicked(movie))
     }
 
-    private fun render(movieState: MovieState) {
-        when (movieState) {
-            is MovieState.DataListState -> showMoviesData(movieState)
-            MovieState.Idle -> Unit
-            MovieState.LoadingState -> showLoader()
-            is MovieState.ErrorState -> showError()
-            is MovieState.SingleDataState -> Unit
-            is MovieState.MovieClickedState -> movieClicked(movieState.movie)
+    private fun render(courseState: CourseState) {
+        when (courseState) {
+            is CourseState.DataListState -> showMoviesData(courseState)
+            CourseState.Idle -> Unit
+            CourseState.LoadingState -> showLoader()
+            is CourseState.ErrorState -> showError()
+            is CourseState.SingleDataState -> Unit
+            is CourseState.CourseSubscribeClickedState -> movieClicked(courseState.movie)
+            is CourseState.CourseDetailClickedState -> courseDetailClicked(courseState.movie)
         }
     }
 
-    private fun showMoviesData(movieState: MovieState.DataListState) {
+    private fun courseDetailClicked(movie: Movie) {
+        coursesViewModel.intentChannel.offer(CourseEvent.CoursesIdle)
+        findNavController().navigate(
+            R.id.action_coursesFragment_to_detailsCourseFragment,
+            Bundle().apply { putInt(INTENT_MOVIE_KEY, movie.id) }
+        )
+    }
+
+    private fun showMoviesData(courseState: CourseState.DataListState) {
         hideLoader()
         binding.listOfMoviesRecyclerView.visibility = VISIBLE
-        coursesAdapter.setData(movieState.data)
+        coursesAdapter.setData(courseState.data)
     }
 
     private fun showLoader() {

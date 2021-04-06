@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
-import com.robosh.basestartapplication.model.MovieEvent
-import com.robosh.basestartapplication.model.MovieState
+import com.robosh.basestartapplication.model.CourseEvent
+import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.net.api.MovieDbApi
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,18 +43,18 @@ class DetailCourseFragment : Fragment() {
             render(it)
         }.launchIn(lifecycleScope)
         arguments?.getInt(INTENT_MOVIE_KEY)?.let {
-            detailViewModel.intentChannel.offer(MovieEvent.MovieNotified(it))
+            detailViewModel.intentChannel.offer(CourseEvent.CourseNotified(it))
         }
     }
 
-    private fun render(movieState: MovieState) {
-        when (movieState) {
-            is MovieState.SingleDataState -> displayMovie(movieState)
-            MovieState.Idle -> Unit
-            MovieState.LoadingState -> displayLoader()
-            is MovieState.ErrorState -> displayError(movieState)
-            is MovieState.DataListState -> Unit
-            is MovieState.MovieClickedState -> Unit
+    private fun render(courseState: CourseState) {
+        when (courseState) {
+            is CourseState.SingleDataState -> displayMovie(courseState)
+            CourseState.Idle -> Unit
+            CourseState.LoadingState -> displayLoader()
+            is CourseState.ErrorState -> displayError(courseState)
+            is CourseState.DataListState -> Unit
+            is CourseState.CourseSubscribeClickedState -> Unit
         }
     }
 
@@ -70,20 +70,20 @@ class DetailCourseFragment : Fragment() {
         binding.progressBar.visibility = GONE
     }
 
-    private fun displayMovie(movieState: MovieState.SingleDataState) {
+    private fun displayMovie(courseState: CourseState.SingleDataState) {
         hideLoader()
         with(binding) {
             detailMovieContent.visibility = VISIBLE
-            detailMovieDescription.text = movieState.movie.description
-            Picasso.get().load(MovieDbApi.IMAGE_BASE_URL + movieState.movie.posterUrl)
+            detailMovieDescription.text = courseState.movie.description
+            Picasso.get().load(MovieDbApi.IMAGE_BASE_URL + courseState.movie.posterUrl)
                 .into(detailMovieImage)
-            detailMovieTitle.text = movieState.movie.title
+            detailMovieTitle.text = courseState.movie.title
         }
     }
 
-    private fun displayError(movieState: MovieState.ErrorState) {
+    private fun displayError(courseState: CourseState.ErrorState) {
         hideLoader()
         binding.errorTextView.visibility = VISIBLE
-        binding.errorTextView.text = movieState.data
+        binding.errorTextView.text = courseState.data
     }
 }
