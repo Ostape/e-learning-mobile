@@ -41,5 +41,9 @@
         android:id="@+id/registerFragment"
         android:name="com.robosh.basestartapplication.register.RegisterFragment"
         android:label="RegisterFragment" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.robosh.basestartapplication.account.AccountFragment"
+        android:label="@string/account" />
 
 </navigation>
