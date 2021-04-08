@@ -29,11 +29,11 @@
             <TextView
                 android:id="@+id/detailCourseTitle"
                 android:layout_width="0dp"
-                app:layout_constraintEnd_toStartOf="@id/kostyli"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:textSize="@dimen/normal_text_size"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/kostyli"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailCourseImage"
                 tools:text="Some TItle" />
@@ -42,8 +42,8 @@
                 android:id="@+id/kostyli"
                 android:layout_width="140dp"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@id/detailCourseImage"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailCourseImage" />
 
             <RatingBar
                 android:id="@+id/rating"
@@ -100,19 +100,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lessonsRecyclerView" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/commentsTextView">
-
-                <include layout="@layout/view_holder_comments" />
-                
-                <include layout="@layout/view_holder_comments" />
-
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@id/commentsTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
