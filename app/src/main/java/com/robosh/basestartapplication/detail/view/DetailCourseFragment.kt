@@ -19,7 +19,7 @@ import com.robosh.basestartapplication.detail.view.lesson.ClickLessonListenerCal
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.model.Lesson
-import com.robosh.basestartapplication.player.view.YouTubePlayerActivity
+import com.robosh.basestartapplication.lessondetail.view.LessonDetailActivity
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -113,7 +113,7 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
     }
 
     override fun onLessonClicked(lesson: Lesson) {
-        startActivity(Intent(requireContext(), YouTubePlayerActivity::class.java).apply {
+        startActivity(Intent(requireContext(), LessonDetailActivity::class.java).apply {
             putExtra(INTENT_LESSON_KEY, lesson)
         })
     }

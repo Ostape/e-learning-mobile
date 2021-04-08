@@ -6,7 +6,8 @@
     <dimen name="divider_margin">1dp</dimen>
     <dimen name="progress_bar_size">60dp</dimen>
     <dimen name="standard_margin">15dp</dimen>
-    <dimen name="imageHeight">200dp</dimen>
+    <dimen name="imageCourseHeight">200dp</dimen>
+    <dimen name="imageLessonHeight">120dp</dimen>
     <dimen name="small_margin">10dp</dimen>
     <dimen name="normal_text_size">20sp</dimen>
     <dimen name="small_text_size">16sp</dimen>

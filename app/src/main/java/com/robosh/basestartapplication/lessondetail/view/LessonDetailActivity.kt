@@ -1,28 +1,32 @@
-package com.robosh.basestartapplication.player.view
+package com.robosh.basestartapplication.lessondetail.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View.GONE
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.application.INTENT_LESSON_KEY
+import com.robosh.basestartapplication.databinding.ActivityLessonDetailBinding
+import com.robosh.basestartapplication.lessondetail.LessonDetailVideoPlayerConfig.Companion.API_KEY
 import com.robosh.basestartapplication.model.Lesson
-import com.robosh.basestartapplication.player.PlayerConfig.Companion.API_KEY
-import kotlinx.android.synthetic.main.activity_youtube.*
+import com.squareup.picasso.Picasso
+import java.text.DateFormat
 
-class YouTubePlayerActivity : YouTubeBaseActivity() {
+class LessonDetailActivity : YouTubeBaseActivity() {
 
     private lateinit var onInitializedListener: YouTubePlayer.OnInitializedListener
+    private lateinit var binding: ActivityLessonDetailBinding
 
     private var cachedLesson: Lesson? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLessonDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         cachedLesson = intent.extras?.get(INTENT_LESSON_KEY) as Lesson?
-        Log.d("TAGGERRR", cachedLesson.toString())
-        setContentView(R.layout.activity_youtube)
+        initViews(cachedLesson)
+
         onInitializedListener = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider?,
@@ -43,6 +47,18 @@ class YouTubePlayerActivity : YouTubeBaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        youtubePlayerId.initialize(API_KEY, onInitializedListener)
+        binding.youtubePlayerId.initialize(API_KEY, onInitializedListener)
+    }
+
+    private fun initViews(lesson: Lesson?) {
+        lesson?.let {
+            with(binding) {
+                detailLessonTitle.text = lesson.name
+                Picasso.get().load(lesson.imageLesson).into(detailLessonImage)
+                detailLessonDescription.text = lesson.text
+                lessonDuration.text = "Тривалість уроку: ${lesson.durationMinutes} хвилин"
+                lessonDeadline.text = "Дедлайн: ${DateFormat.getDateInstance().format(lesson.deadline)}"
+            }
+        }
     }
 }

@@ -13,4 +13,5 @@
     <string name="enterEmail">Email address</string>
     <string name="enterPassword">Password</string>
     <string name="loginButtonText">Увійти</string>
+    <string name="comments">Коментарі</string>
 </resources>

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".player.view.YouTubePlayerActivity" />
+        <activity android:name=".lessondetail.view.LessonDetailActivity" />
 
         <receiver android:name=".receiver.AlarmNotificationReceiver" />
     </application>

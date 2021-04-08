@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detailMovieContent"
@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/detailCourseImage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/imageHeight"
+                android:layout_height="@dimen/imageCourseHeight"
                 android:scaleType="centerCrop"
                 android:src="@drawable/loader"
                 app:layout_constraintTop_toTopOf="parent" />
