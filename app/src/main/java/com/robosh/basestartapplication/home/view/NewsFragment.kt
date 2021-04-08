@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.robosh.basestartapplication.databinding.FragmentNewsBinding
 
@@ -24,7 +26,18 @@ class NewsFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.webview.settings.javaScriptEnabled = true
-        binding.webview.loadUrl("http://apeps.kpi.ua/news")
+        with(binding.webview) {
+            settings.javaScriptEnabled = true
+            webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    if (url?.startsWith("http://apeps.kpi.ua") == true) {
+                        loadUrl(url)
+                        return true
+                    }
+                    return false
+                }
+            }
+            loadUrl("http://apeps.kpi.ua/news")
+        }
     }
 }
