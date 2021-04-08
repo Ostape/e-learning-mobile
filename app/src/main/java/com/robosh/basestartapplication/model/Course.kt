@@ -8,6 +8,6 @@ data class Course(
     val rating: String?,
     val teachers: List<Teacher>?,
     val lessons: List<Lesson>,
-    val comments: List<String>?,
+    val comments: List<Comment>?,
     val deadline: String?
 )
