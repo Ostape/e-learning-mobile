@@ -78,6 +78,7 @@ class DetailCourseFragment : Fragment() {
             Picasso.get().load(courseState.course.courseImage)
                 .into(detailCourseImage)
             detailCourseTitle.text = courseState.course.name
+            rating.rating = courseState.course.rating?.toFloat() ?: 0f
         }
     }
 

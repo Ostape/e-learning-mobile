@@ -9,8 +9,6 @@ import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickLis
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactory
 import com.robosh.basestartapplication.databinding.ViewHolderCourseBinding
 import com.robosh.basestartapplication.model.Course
-import com.robosh.basestartapplication.model.Movie
-import com.robosh.basestartapplication.net.api.ElearningApi.Companion.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
 
 class CoursesViewHolder private constructor(
@@ -44,7 +42,7 @@ class CoursesViewHolder private constructor(
             subscribeCourseButton.setOnClickListener(
                 subscribeCourseClickListenerFactory.createOnClickListener(course)
             )
-            rating.rating = 4f
+            rating.rating = course.rating?.toFloat() ?: 0f
             courseViewHolderId.setOnClickListener(clickListenerDetail.createOnClickListener(course))
         }
     }

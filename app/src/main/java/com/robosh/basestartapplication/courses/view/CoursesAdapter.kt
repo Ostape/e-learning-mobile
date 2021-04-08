@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickListenerFactory
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactory
 import com.robosh.basestartapplication.model.Course
-import com.robosh.basestartapplication.model.Movie
 
 class CoursesAdapter(
     private val clickListenerDetail: DetailCoursesClickListenerFactory,

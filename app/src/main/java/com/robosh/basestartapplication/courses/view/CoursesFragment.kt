@@ -31,7 +31,6 @@ import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
 import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
-import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.receiver.AlarmNotificationReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_browse.*
@@ -141,17 +140,17 @@ class CoursesFragment : Fragment(),
 //        startAlarm(instance, movie)
     }
 
-    private fun showClickedMovieToast(movie: Movie) =
-        Toast.makeText(context, "Clicked ${movie.title}", Toast.LENGTH_LONG)
+    private fun showClickedMovieToast(course: Course) =
+        Toast.makeText(context, "Clicked ${course.name}", Toast.LENGTH_LONG)
 
     private fun startAlarm(
         calendar: Calendar,
-        movie: Movie
+        course: Course
     ) {
         val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmNotificationIntent =
             Intent(requireContext(), AlarmNotificationReceiver::class.java).apply {
-                putExtra(INTENT_MOVIE_KEY, movie.id)
+                putExtra(INTENT_MOVIE_KEY, course.id)
             }
         val pendingIntent =
             PendingIntent.getBroadcast(
