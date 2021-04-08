@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseStartApplication</string>
+    <string name="app_name">e-learning</string>
     <string name="error_message">Some error occurred</string>
     <string name="release_date">Release date:</string>
     <string name="register_course">Вчитись</string>
