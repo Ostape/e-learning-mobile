@@ -10,12 +10,4 @@
         android:layout_height="250dp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/youtubePlayBtn"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:text="Start"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/youtubePlayerId" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

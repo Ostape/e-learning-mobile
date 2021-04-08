@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.robosh.basestartapplication.application.INTENT_LESSON_KEY
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
@@ -112,6 +113,8 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
     }
 
     override fun onLessonClicked(lesson: Lesson) {
-        startActivity(Intent(requireContext(), YouTubePlayerActivity::class.java))
+        startActivity(Intent(requireContext(), YouTubePlayerActivity::class.java).apply {
+            putExtra(INTENT_LESSON_KEY, lesson)
+        })
     }
 }
