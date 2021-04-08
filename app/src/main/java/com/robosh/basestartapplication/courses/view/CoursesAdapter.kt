@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickListenerFactory
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactory
+import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.Movie
 
 class CoursesAdapter(
@@ -11,7 +12,7 @@ class CoursesAdapter(
     private val subscribeCourseClickListenerFactory: SubscribeCourseClickListenerFactory
 ) : RecyclerView.Adapter<CoursesViewHolder>() {
 
-    private val courses = ArrayList<Movie>()
+    private val courses = ArrayList<Course>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoursesViewHolder {
         return CoursesViewHolder.create(
@@ -27,7 +28,7 @@ class CoursesAdapter(
         holder.bind(courses[position])
     }
 
-    fun setData(list: List<Movie>) {
+    fun setData(list: List<Course>) {
         courses.clear()
         courses.addAll(list)
         notifyDataSetChanged()

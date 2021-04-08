@@ -10,12 +10,13 @@ class GetOneMovieUseCaseImpl @Inject constructor(
     private val movieMapper: MovieMapper
 ) : GetOneMovieUseCase {
 
-    override suspend fun execute(movieId: Int): CourseState {
-        val movieResponse = coursesRepository.getCourseById(movieId)
-        return if (movieResponse.isSuccessful) {
-            movieResponse.body()?.let {
-                CourseState.SingleDataState(movieMapper.map(listOf(it)).first())
-            } ?: CourseState.ErrorState("Movie response is null")
-        } else CourseState.ErrorState("Some error occurred: ${movieResponse.errorBody()}")
+    override suspend fun execute(courseId: String): CourseState {
+        val courseResponse = coursesRepository.getCourseById(courseId)
+//        return if (movieResponse.isSuccessful) {
+//            movieResponse.body()?.let {
+//                CourseState.SingleDataState(movieMapper.map(listOf(it)).first())
+//            } ?: CourseState.ErrorState("Movie response is null")
+//        } else CourseState.ErrorState("Some error occurred: ${movieResponse.errorBody()}")
+        return CourseState.SingleDataState(courseResponse)
     }
 }

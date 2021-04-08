@@ -28,6 +28,7 @@ import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickLis
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickCallback
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactoryImpl
 import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
+import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.model.Movie
@@ -82,18 +83,15 @@ class CoursesFragment : Fragment(),
         }
     }
 
-    override fun onSubscribeCourseClicked(movie: Movie) {
-        coursesViewModel.intentChannel.offer(CourseEvent.CourseSubscribeClicked(movie))
-        Log.d("TAGGERR", "SUBSCRIBE")
+    override fun onSubscribeCourseClicked(course: Course) {
+        coursesViewModel.intentChannel.offer(CourseEvent.CourseSubscribeClicked(course))
     }
 
-    override fun onDetailCourseClicked(movie: Movie) {
-        Log.d("TAGGERR", "DETAIL")
+    override fun onDetailCourseClicked(course: Course) {
         findNavController().navigate(
             R.id.action_coursesFragment_to_detailsCourseFragment,
-            Bundle().apply { putInt(INTENT_MOVIE_KEY, movie.id) }
+            Bundle().apply { putString(INTENT_MOVIE_KEY, course.id) }
         )
-//        coursesViewModel.intentChannel.offer(CourseEvent.CourseDetailClicked(movie))
     }
 
     private fun render(courseState: CourseState) {
@@ -103,17 +101,8 @@ class CoursesFragment : Fragment(),
             CourseState.LoadingState -> showLoader()
             is CourseState.ErrorState -> showError()
             is CourseState.SingleDataState -> Unit
-            is CourseState.CourseSubscribeClickedState -> movieClicked(courseState.movie)
-            is CourseState.CourseDetailClickedState -> courseDetailClicked(courseState.movie)
+            is CourseState.CourseSubscribeClickedState -> movieClicked(courseState.course)
         }
-    }
-
-    private fun courseDetailClicked(movie: Movie) {
-        coursesViewModel.intentChannel.offer(CourseEvent.CoursesIdle)
-        findNavController().navigate(
-            R.id.action_coursesFragment_to_detailsCourseFragment,
-            Bundle().apply { putInt(INTENT_MOVIE_KEY, movie.id) }
-        )
     }
 
     private fun showMoviesData(courseState: CourseState.DataListState) {
@@ -139,7 +128,7 @@ class CoursesFragment : Fragment(),
         binding.errorMessageMovies.visibility = VISIBLE
     }
 
-    private fun movieClicked(movie: Movie) {
+    private fun movieClicked(course: Course) {
         val sharedPreferences =
             requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
         if (sharedPreferences.getBoolean(USER_LOGGED_IN_TOKEN, false).not()) {

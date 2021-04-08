@@ -42,7 +42,7 @@ class DetailCourseFragment : Fragment() {
         detailViewModel.state.onEach {
             render(it)
         }.launchIn(lifecycleScope)
-        arguments?.getInt(INTENT_MOVIE_KEY)?.let {
+        arguments?.getString(INTENT_MOVIE_KEY)?.let {
             detailViewModel.intentChannel.offer(CourseEvent.CourseNotified(it))
         }
     }
@@ -74,10 +74,10 @@ class DetailCourseFragment : Fragment() {
         hideLoader()
         with(binding) {
             detailMovieContent.visibility = VISIBLE
-            detailCourseDescription.text = courseState.movie.description
-            Picasso.get().load(ElearningApi.IMAGE_BASE_URL + courseState.movie.posterUrl)
+            detailCourseDescription.text = courseState.course.description
+            Picasso.get().load(courseState.course.courseImage)
                 .into(detailCourseImage)
-            detailCourseTitle.text = courseState.movie.title
+            detailCourseTitle.text = courseState.course.name
         }
     }
 

@@ -1,8 +1,8 @@
 package com.robosh.basestartapplication.courses.view.detail
 
-import com.robosh.basestartapplication.model.Movie
+import com.robosh.basestartapplication.model.Course
 
 interface DetailCoursesClickCallback {
 
-    fun onDetailCourseClicked(movie: Movie)
+    fun onDetailCourseClicked(movie: Course)
 }

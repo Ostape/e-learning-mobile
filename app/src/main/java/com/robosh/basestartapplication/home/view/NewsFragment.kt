@@ -25,6 +25,6 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.webview.settings.javaScriptEnabled = true
-        binding.webview.loadUrl("https://www.pravda.com.ua/news/2021/04/5/7289114/")
+        binding.webview.loadUrl("http://apeps.kpi.ua/news")
     }
 }

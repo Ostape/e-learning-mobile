@@ -1,12 +1,13 @@
 package com.robosh.basestartapplication.net.repository
 
+import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.net.model.MovieListResponse
 import com.robosh.basestartapplication.net.model.MovieResponse
 import retrofit2.Response
 
 interface CoursesRepository {
 
-    suspend fun getCourseListReference(): Response<MovieListResponse>
+    suspend fun getCourseListReference(): List<Course>
 
-    suspend fun getCourseById(movieId: Int): Response<MovieResponse>
+    suspend fun getCourseById(courseId: String): Course
 }

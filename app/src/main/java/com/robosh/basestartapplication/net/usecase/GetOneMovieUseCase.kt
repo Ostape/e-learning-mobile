@@ -4,5 +4,5 @@ import com.robosh.basestartapplication.model.CourseState
 
 interface GetOneMovieUseCase {
 
-    suspend fun execute(movieId: Int): CourseState
+    suspend fun execute(courseId: String): CourseState
 }

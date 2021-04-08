@@ -8,6 +8,7 @@ import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.courses.view.detail.DetailCoursesClickListenerFactory
 import com.robosh.basestartapplication.courses.view.subscribe.SubscribeCourseClickListenerFactory
 import com.robosh.basestartapplication.databinding.ViewHolderCourseBinding
+import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.Movie
 import com.robosh.basestartapplication.net.api.ElearningApi.Companion.IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
@@ -35,16 +36,16 @@ class CoursesViewHolder private constructor(
 
     private val binding: ViewHolderCourseBinding = ViewHolderCourseBinding.bind(view)
 
-    fun bind(movie: Movie) {
+    fun bind(course: Course) {
         with(binding) {
-            Picasso.get().load(IMAGE_BASE_URL + movie.posterUrl).into(courseImageId)
-            movieTitle.text = movie.title
-            courseDescription.text = movie.description
+            Picasso.get().load(course.courseImage).into(courseImageId)
+            movieTitle.text = course.name
+            courseDescription.text = course.description
             subscribeCourseButton.setOnClickListener(
-                subscribeCourseClickListenerFactory.createOnClickListener(movie)
+                subscribeCourseClickListenerFactory.createOnClickListener(course)
             )
             rating.rating = 4f
-            courseViewHolderId.setOnClickListener(clickListenerDetail.createOnClickListener(movie))
+            courseViewHolderId.setOnClickListener(clickListenerDetail.createOnClickListener(course))
         }
     }
 }

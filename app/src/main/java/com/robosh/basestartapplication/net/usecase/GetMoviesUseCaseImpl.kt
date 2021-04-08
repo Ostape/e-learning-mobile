@@ -11,13 +11,14 @@ class GetMoviesUseCaseImpl @Inject constructor(
 ) : GetMoviesUseCase {
 
     override suspend fun execute(): CourseState {
-        val movieListResponse = coursesRepository.getCourseListReference()
-        return if (movieListResponse.isSuccessful) {
-            CourseState.DataListState(
-                movieMapper.map(movieListResponse.body()?.results ?: emptyList())
-            )
-        } else {
-            CourseState.ErrorState("Some error occurred: ${movieListResponse.errorBody()}")
-        }
+//        val movieListResponse = coursesRepository.getCourseListReference()
+//        return if (movieListResponse.isSuccessful) {
+//            CourseState.DataListState(
+//                movieMapper.map(movieListResponse.body()?.results ?: emptyList())
+//            )
+//        } else {
+//            CourseState.ErrorState("Some error occurred: ${movieListResponse.errorBody()}")
+//        }
+        return CourseState.DataListState(coursesRepository.getCourseListReference())
     }
 }

@@ -38,10 +38,10 @@ class CoursesViewModel @Inject constructor(
             when (movieEvent) {
                 is CourseEvent.CoursesFetch -> _state.value = getMoviesUseCase.execute()
                 is CourseEvent.CourseSubscribeClicked -> _state.value =
-                    CourseState.CourseSubscribeClickedState(movieEvent.movie)
+                    CourseState.CourseSubscribeClickedState(movieEvent.course)
                 is CourseEvent.CourseNotified -> Unit
                 is CourseEvent.CourseDetailClicked -> _state.value =
-                    CourseState.CourseDetailClickedState(movieEvent.movie)
+                    CourseState.CourseDetailClickedState(movieEvent.course)
                 is CourseEvent.CoursesIdle -> _state.value = CourseState.Idle
             }
         }
