@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/coursesFragment"
-        android:name="com.robosh.basestartapplication.courses.view.DetailCoursesFragment"
+        android:name="com.robosh.basestartapplication.courses.view.CoursesFragment"
         android:label="@string/courses_title">
         <action
             android:id="@+id/action_coursesFragment_to_detailsCourseFragment"
@@ -20,6 +20,9 @@
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_coursesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -29,7 +32,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.robosh.basestartapplication.login.LoginFragment"
+        android:name="com.robosh.basestartapplication.login.view.LoginFragment"
         android:label="Логін" >
         <action
             android:id="@+id/action_loginFragment_to_accountFragment"
@@ -42,7 +45,7 @@
 
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.robosh.basestartapplication.account.AccountFragment"
+        android:name="com.robosh.basestartapplication.account.view.AccountFragment"
         android:label="@string/account">
         <action
             android:id="@+id/action_accountFragment_to_loginFragment"

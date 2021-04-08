@@ -2,7 +2,9 @@ package com.robosh.basestartapplication.net.di
 
 import com.robosh.basestartapplication.net.RetrofitClientInstance
 import com.robosh.basestartapplication.net.api.ElearningApi
-import com.robosh.basestartapplication.net.repository.MovieRepository
+import com.robosh.basestartapplication.net.repository.AuthRepository
+import com.robosh.basestartapplication.net.repository.AuthRepositoryImpl
+import com.robosh.basestartapplication.net.repository.CoursesRepository
 import com.robosh.basestartapplication.net.repository.CoursesRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -21,10 +23,16 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMovieDbApi(retrofit: Retrofit): ElearningApi = retrofit.create(ElearningApi::class.java)
+    fun provideElearningDbApi(retrofit: Retrofit): ElearningApi =
+        retrofit.create(ElearningApi::class.java)
 
     @Singleton
     @Provides
-    fun provideMovieRepository(coursesRepositoryImpl: CoursesRepositoryImpl): MovieRepository =
+    fun provideCoursesRepository(coursesRepositoryImpl: CoursesRepositoryImpl): CoursesRepository =
         coursesRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository =
+        authRepositoryImpl
 }

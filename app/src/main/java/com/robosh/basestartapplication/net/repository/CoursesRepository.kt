@@ -4,9 +4,9 @@ import com.robosh.basestartapplication.net.model.MovieListResponse
 import com.robosh.basestartapplication.net.model.MovieResponse
 import retrofit2.Response
 
-interface MovieRepository {
+interface CoursesRepository {
 
-    suspend fun getMovieListReference(): Response<MovieListResponse>
+    suspend fun getCourseListReference(): Response<MovieListResponse>
 
-    suspend fun getMovieById(movieId: Int): Response<MovieResponse>
+    suspend fun getCourseById(movieId: Int): Response<MovieResponse>
 }

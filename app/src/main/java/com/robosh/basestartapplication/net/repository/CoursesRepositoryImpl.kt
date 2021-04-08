@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class CoursesRepositoryImpl @Inject constructor(
     private val elearningApi: ElearningApi
-) : MovieRepository {
+) : CoursesRepository {
 
     private val coursesList = mutableListOf<Course>().apply {
         add(
@@ -218,11 +218,11 @@ class CoursesRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getMovieListReference(): Response<MovieListResponse> {
+    override suspend fun getCourseListReference(): Response<MovieListResponse> {
         return elearningApi.getPopularMovieListReference()
     }
 
-    override suspend fun getMovieById(movieId: Int): Response<MovieResponse> {
+    override suspend fun getCourseById(movieId: Int): Response<MovieResponse> {
         return elearningApi.getMovieById(movieId)
     }
 }

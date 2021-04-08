@@ -1,9 +1,6 @@
 package com.robosh.basestartapplication.net.di
 
-import com.robosh.basestartapplication.net.usecase.GetMoviesUseCase
-import com.robosh.basestartapplication.net.usecase.GetMoviesUseCaseImpl
-import com.robosh.basestartapplication.net.usecase.GetOneMovieUseCase
-import com.robosh.basestartapplication.net.usecase.GetOneMovieUseCaseImpl
+import com.robosh.basestartapplication.net.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +13,20 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideGetMoviesUseCase(getMoviesUseCaseImpl: GetMoviesUseCaseImpl): GetMoviesUseCase =
+    fun provideGetCoursesUseCase(getMoviesUseCaseImpl: GetMoviesUseCaseImpl): GetMoviesUseCase =
         getMoviesUseCaseImpl
 
     @Provides
     @ViewModelScoped
-    fun provideGetOneMovieUseCase(getOneMovieUseCaseImpl: GetOneMovieUseCaseImpl): GetOneMovieUseCase =
+    fun provideGetOneCourseUseCase(getOneMovieUseCaseImpl: GetOneMovieUseCaseImpl): GetOneMovieUseCase =
         getOneMovieUseCaseImpl
+
+    @Provides
+    @ViewModelScoped
+    fun provideAuthUseCase(getAuthUseCaseImpl: AuthUseCaseImpl): AuthUseCase = getAuthUseCaseImpl
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetUserDataUseCase(getUserDataUseCaseImpl: GetUserDataUseCaseImpl): GetUserDataUseCase =
+        getUserDataUseCaseImpl
 }
