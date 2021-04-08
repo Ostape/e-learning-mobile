@@ -14,7 +14,6 @@ import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
-import com.robosh.basestartapplication.net.api.ElearningApi
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,6 +25,13 @@ class DetailCourseFragment : Fragment() {
 
     private val detailViewModel: DetailViewModel by viewModels()
     private lateinit var binding: FragmentDetailBinding
+    private lateinit var lessonsAdapter: LessonsAdapter
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lessonsAdapter = LessonsAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +45,22 @@ class DetailCourseFragment : Fragment() {
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
         detailViewModel.state.onEach {
             render(it)
         }.launchIn(lifecycleScope)
         arguments?.getString(INTENT_MOVIE_KEY)?.let {
             detailViewModel.intentChannel.offer(CourseEvent.CourseNotified(it))
+        }
+    }
+
+    private fun initRecyclerView() {
+        with(binding.lessonsRecyclerView) {
+            setHasFixedSize(true)
+            isNestedScrollingEnabled = false
+            adapter = lessonsAdapter
+            layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(this@DetailCourseFragment.requireContext())
         }
     }
 
@@ -79,6 +96,7 @@ class DetailCourseFragment : Fragment() {
                 .into(detailCourseImage)
             detailCourseTitle.text = courseState.course.name
             rating.rating = courseState.course.rating?.toFloat() ?: 0f
+            lessonsAdapter.setData(courseState.course.lessons)
         }
     }
 

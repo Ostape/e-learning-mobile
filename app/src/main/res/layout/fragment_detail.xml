@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailCourseDescription" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lessonsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,13 +87,7 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/lessonsTextView">
 
-                <include layout="@layout/view_holder_course_lesson" />
-
-                <include layout="@layout/view_holder_course_lesson" />
-
-                <include layout="@layout/view_holder_course_lesson" />
-
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/commentsTextView"

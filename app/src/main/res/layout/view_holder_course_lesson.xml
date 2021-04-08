@@ -36,6 +36,7 @@
         android:id="@+id/lessonDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="5"
         android:layout_marginStart="15dp"
         android:text="Усі екрани системи повинні бути коректно зверстаними та оформленими відповідно до дизайну.
 Деяка функціональність може буте не реалізована."
