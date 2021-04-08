@@ -14,6 +14,7 @@ import com.robosh.basestartapplication.application.INTENT_LESSON_KEY
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
+import com.robosh.basestartapplication.detail.view.comments.CommentsAdapter
 import com.robosh.basestartapplication.detail.view.lesson.ClickLessonCallback
 import com.robosh.basestartapplication.detail.view.lesson.ClickLessonListenerCallbackImpl
 import com.robosh.basestartapplication.model.CourseEvent
@@ -32,11 +33,13 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
     private val detailViewModel: DetailViewModel by viewModels()
     private lateinit var binding: FragmentDetailBinding
     private lateinit var lessonsAdapter: LessonsAdapter
+    private lateinit var commentsAdapter: CommentsAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lessonsAdapter = LessonsAdapter(ClickLessonListenerCallbackImpl(this))
+        commentsAdapter = CommentsAdapter()
     }
 
     override fun onCreateView(
@@ -65,6 +68,13 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
             adapter = lessonsAdapter
+            layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(this@DetailCourseFragment.requireContext())
+        }
+        with(binding.commentsRecyclerView) {
+            setHasFixedSize(true)
+            isNestedScrollingEnabled = false
+            adapter = commentsAdapter
             layoutManager =
                 androidx.recyclerview.widget.LinearLayoutManager(this@DetailCourseFragment.requireContext())
         }
@@ -103,6 +113,7 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
             detailCourseTitle.text = courseState.course.name
             rating.rating = courseState.course.rating?.toFloat() ?: 0f
             lessonsAdapter.setData(courseState.course.lessons)
+            commentsAdapter.setData(courseState.course.comments ?: emptyList())
         }
     }
 
