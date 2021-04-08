@@ -8,6 +8,7 @@ import com.google.android.youtube.player.YouTubePlayer
 import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.application.INTENT_LESSON_KEY
 import com.robosh.basestartapplication.databinding.ActivityLessonDetailBinding
+import com.robosh.basestartapplication.detail.view.comments.CommentsAdapter
 import com.robosh.basestartapplication.lessondetail.LessonDetailVideoPlayerConfig.Companion.API_KEY
 import com.robosh.basestartapplication.model.Lesson
 import com.squareup.picasso.Picasso
@@ -17,6 +18,7 @@ class LessonDetailActivity : YouTubeBaseActivity() {
 
     private lateinit var onInitializedListener: YouTubePlayer.OnInitializedListener
     private lateinit var binding: ActivityLessonDetailBinding
+    private lateinit var commentsAdapter: CommentsAdapter
 
     private var cachedLesson: Lesson? = null
 
@@ -25,7 +27,17 @@ class LessonDetailActivity : YouTubeBaseActivity() {
         binding = ActivityLessonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         cachedLesson = intent.extras?.get(INTENT_LESSON_KEY) as Lesson?
+        commentsAdapter = CommentsAdapter()
+        with(binding.lessonCommentList) {
+            setHasFixedSize(true)
+            isNestedScrollingEnabled = false
+            adapter = commentsAdapter
+            layoutManager =
+                androidx.recyclerview.widget.LinearLayoutManager(this@LessonDetailActivity)
+        }
+        commentsAdapter.setData(cachedLesson?.comments ?: emptyList())
         initViews(cachedLesson)
+
 
         onInitializedListener = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
