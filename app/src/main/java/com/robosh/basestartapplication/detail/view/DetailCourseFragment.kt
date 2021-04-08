@@ -1,5 +1,6 @@
 package com.robosh.basestartapplication.detail.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.databinding.FragmentDetailBinding
 import com.robosh.basestartapplication.detail.presenter.DetailViewModel
+import com.robosh.basestartapplication.detail.view.lesson.ClickLessonCallback
+import com.robosh.basestartapplication.detail.view.lesson.ClickLessonListenerCallbackImpl
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
+import com.robosh.basestartapplication.model.Lesson
+import com.robosh.basestartapplication.player.view.YouTubePlayerActivity
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +26,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class DetailCourseFragment : Fragment() {
+class DetailCourseFragment : Fragment(), ClickLessonCallback {
 
     private val detailViewModel: DetailViewModel by viewModels()
     private lateinit var binding: FragmentDetailBinding
@@ -30,7 +35,7 @@ class DetailCourseFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lessonsAdapter = LessonsAdapter()
+        lessonsAdapter = LessonsAdapter(ClickLessonListenerCallbackImpl(this))
     }
 
     override fun onCreateView(
@@ -104,5 +109,9 @@ class DetailCourseFragment : Fragment() {
         hideLoader()
         binding.errorTextView.visibility = VISIBLE
         binding.errorTextView.text = courseState.data
+    }
+
+    override fun onLessonClicked(lesson: Lesson) {
+        startActivity(Intent(requireContext(), YouTubePlayerActivity::class.java))
     }
 }
