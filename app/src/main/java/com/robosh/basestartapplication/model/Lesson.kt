@@ -10,6 +10,6 @@ data class Lesson(
     val text: String,
     val imageLesson: String,
     val videoUrl: String?,
-    val comments: List<String>,
+    val comments: List<Comment>?,
     val deadline: Date
 )
