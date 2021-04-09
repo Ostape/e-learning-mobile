@@ -94,5 +94,8 @@ class AccountFragment : Fragment() {
                 .setIcon(R.drawable.ic_log_out)
                 .show()
         }
+        binding.myCoursesOpenId.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_myCoursesFragment)
+        }
     }
 }
