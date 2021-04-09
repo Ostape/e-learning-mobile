@@ -48,7 +48,7 @@ class LessonDetailActivity : YouTubeBaseActivity() {
                 youTubePlayer: YouTubePlayer?,
                 p2: Boolean
             ) {
-                youTubePlayer?.loadVideo("g8chWfmLb6M")
+                youTubePlayer?.loadVideo(cachedLesson?.videoUrl)
             }
 
             override fun onInitializationFailure(

@@ -43,7 +43,7 @@ val coursesList = mutableListOf<Course>().apply {
                             "Вихід з програми і завершення її роботи\n" +
                             "Використання IDE Eclipse / NetBeans / Intellij IDEA для створення і виконання програм",
                     "https://upload.wikimedia.org/wikipedia/uk/8/85/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_Java.png",
-                    null,
+                    "pCJsAzWecbk",
                     listOf(
                         Comment("1","Дуже цікавий урок!","Орест Шемелюк"),
                         Comment("2", "Дійсно унікальний матеріал", "Нікіта Бортнічук", "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png")
@@ -64,7 +64,7 @@ val coursesList = mutableListOf<Course>().apply {
                             "Оголошення і ініціалізація змінних\n" +
                             "Область видимості і час життя змінних",
                     "https://i.ytimg.com/vi/fGta43iNjNM/maxresdefault.jpg",
-                    null,
+                    "S1GVLezqYoE",
                     listOf(
                         Comment("3", "Хотілося б трохи більше інформації..", "Андрій Прокопчук"),
                         Comment("4","Топчик!", "Іван Петриченко")
@@ -83,7 +83,7 @@ val coursesList = mutableListOf<Course>().apply {
                             "Методи: параметри (посилання і прості типи) і ті, що повертаються, використання set і get- методів, перезавантаження методів, правила перезавантаження\n" +
                             "Об'єктна модель. Основні положення: абстрагування, інкапсуляція, модульність, ієрархія",
                     "https://i1.wp.com/java-master.com/wp-content/uploads/2017/05/3whales-oop.png",
-                    null,
+                    "EvGi6XDgV7w",
                     listOf(
                         Comment("5", "Класна картинка курсу!", "Шакіла Оніл"),
                         Comment("6", "Корисний урок)", "Кріштіану Роналду")
