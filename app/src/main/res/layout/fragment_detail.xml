@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,6 +24,16 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/loader"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/likeIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_empty_like"
+                app:layout_constraintBottom_toBottomOf="@id/detailCourseImage"
+                app:layout_constraintRight_toRightOf="@id/detailCourseImage" />
 
             <TextView
                 android:id="@+id/detailCourseTitle"

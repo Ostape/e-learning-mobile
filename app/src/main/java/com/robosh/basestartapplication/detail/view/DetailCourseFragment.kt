@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.robosh.basestartapplication.R
 import com.robosh.basestartapplication.application.INTENT_LESSON_KEY
 import com.robosh.basestartapplication.application.INTENT_MOVIE_KEY
 import com.robosh.basestartapplication.databinding.FragmentDetailBinding
@@ -17,10 +18,12 @@ import com.robosh.basestartapplication.detail.presenter.DetailViewModel
 import com.robosh.basestartapplication.detail.view.comments.CommentsAdapter
 import com.robosh.basestartapplication.detail.view.lesson.ClickLessonCallback
 import com.robosh.basestartapplication.detail.view.lesson.ClickLessonListenerCallbackImpl
+import com.robosh.basestartapplication.lessondetail.view.LessonDetailActivity
+import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
 import com.robosh.basestartapplication.model.Lesson
-import com.robosh.basestartapplication.lessondetail.view.LessonDetailActivity
+import com.robosh.basestartapplication.net.data.registeredUser
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -104,6 +107,18 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
     }
 
     private fun displayMovie(courseState: CourseState.SingleDataState) {
+        setIconState(courseState.course)
+        binding.likeIcon.setOnClickListener {
+            if (courseState.course.isCourseLiked) {
+                courseState.course.isCourseLiked = false
+                registeredUser.wishListCourses?.remove(courseState.course)
+                binding.likeIcon.setImageResource(R.drawable.ic_empty_like)
+            } else {
+                courseState.course.isCourseLiked = true
+                registeredUser.wishListCourses?.add(courseState.course)
+                binding.likeIcon.setImageResource(R.drawable.ic_full_like)
+            }
+        }
         hideLoader()
         with(binding) {
             detailMovieContent.visibility = VISIBLE
@@ -127,5 +142,13 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
         startActivity(Intent(requireContext(), LessonDetailActivity::class.java).apply {
             putExtra(INTENT_LESSON_KEY, lesson)
         })
+    }
+
+    private fun setIconState(course: Course) {
+        if (course.isCourseLiked) {
+            binding.likeIcon.setImageResource(R.drawable.ic_full_like)
+        } else {
+            binding.likeIcon.setImageResource(R.drawable.ic_empty_like)
+        }
     }
 }
