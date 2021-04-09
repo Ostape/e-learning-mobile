@@ -1,5 +1,7 @@
 package com.robosh.basestartapplication.model
 
+import com.robosh.basestartapplication.net.data.coursesList
+
 data class User(
     val id: String,
     val email: String,
@@ -7,6 +9,6 @@ data class User(
     val name: String,
     val surname: String,
     val avatarUrl: String?,
-    val wishListCourses: List<Course>?,
-    val savedCourses: List<Course>?
+    val wishListCourses: MutableList<Course>? = mutableListOf(),
+    val learningCourses: MutableList<Course>? = mutableListOf()
 )
