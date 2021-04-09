@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -31,6 +30,7 @@ import com.robosh.basestartapplication.databinding.FragmentCoursesBinding
 import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
+import com.robosh.basestartapplication.net.data.registeredUser
 import com.robosh.basestartapplication.receiver.AlarmNotificationReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_browse.*
@@ -83,7 +83,7 @@ class CoursesFragment : Fragment(),
     }
 
     override fun onSubscribeCourseClicked(course: Course) {
-        coursesViewModel.intentChannel.offer(CourseEvent.CourseSubscribeClicked(course))
+        movieClicked(course)
     }
 
     override fun onDetailCourseClicked(course: Course) {
@@ -100,7 +100,6 @@ class CoursesFragment : Fragment(),
             CourseState.LoadingState -> showLoader()
             is CourseState.ErrorState -> showError()
             is CourseState.SingleDataState -> Unit
-            is CourseState.CourseSubscribeClickedState -> movieClicked(courseState.course)
         }
     }
 
@@ -132,7 +131,18 @@ class CoursesFragment : Fragment(),
             requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
         if (sharedPreferences.getBoolean(USER_LOGGED_IN_TOKEN, false).not()) {
             activity?.bottomNavView?.selectedItemId = R.id.accountFragment
+        } else {
+            if (course.isStudying) {
+                course.isStudying = false
+                registeredUser.learningCourses?.remove(course)
+            } else {
+                course.isStudying = true
+                registeredUser.learningCourses?.add(course)
+            }
+            coursesAdapter.notifyDataSetChanged()
         }
+
+
 //        showClickedMovieToast(movie).show()
 //        val instance = Calendar.getInstance()
 ////        instance.set(Calendar.HOUR, 9) // FYI: uncomment if needs to show alarm at 9 a.m.

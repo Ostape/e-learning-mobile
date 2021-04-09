@@ -44,6 +44,13 @@ class CoursesViewHolder private constructor(
             )
             rating.rating = course.rating?.toFloat() ?: 0f
             courseViewHolderId.setOnClickListener(clickListenerDetail.createOnClickListener(course))
+            if (course.isStudying) {
+                subscribeCourseButton.text = "Вчуся"
+                subscribeCourseButton.setBackgroundColor(itemView.resources.getColor(R.color.colorAccent))
+            } else {
+                subscribeCourseButton.setBackgroundColor(itemView.resources.getColor(R.color.colorPrimary))
+                subscribeCourseButton.text = "Вчитися"
+            }
         }
     }
 }

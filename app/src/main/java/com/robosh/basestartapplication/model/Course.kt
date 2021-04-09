@@ -10,5 +10,6 @@ data class Course(
     val lessons: List<Lesson>,
     val comments: List<Comment>?,
     val deadline: String?,
-    var isCourseLiked: Boolean = false
+    var isCourseLiked: Boolean = false,
+    var isStudying: Boolean = false
 )
