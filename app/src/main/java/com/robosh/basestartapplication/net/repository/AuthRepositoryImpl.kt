@@ -8,12 +8,12 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
 
     // todo should return Response class
-    override fun loginUser(email: String, password: String) {
+    override suspend fun loginUser(email: String, password: String) {
 //        elearningApi.loginUser() should return Response
 //        return LoginState.LoginSuccess
     }
 
-    override fun getUser() {
+    override suspend fun getUser() {
         // should return Response User
     }
 }

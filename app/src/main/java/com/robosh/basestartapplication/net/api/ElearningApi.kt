@@ -1,5 +1,7 @@
 package com.robosh.basestartapplication.net.api
 
+import com.robosh.basestartapplication.model.Course
+import com.robosh.basestartapplication.model.User
 import com.robosh.basestartapplication.net.model.MovieListResponse
 import com.robosh.basestartapplication.net.model.MovieResponse
 import retrofit2.Response
@@ -15,9 +17,12 @@ interface ElearningApi {
         const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 
-    @GET("movie/popular$API_KEY_QUERY")
-    suspend fun getPopularMovieListReference(): Response<MovieListResponse>
+    @GET("/wishlist$API_KEY_QUERY")
+    suspend fun getWishListReference(): Response<Course>
 
-    @GET("movie/{movie_id}$API_KEY_QUERY")
-    suspend fun getMovieById(@Path("movie_id") movieId: Int): Response<MovieResponse>
+    @GET("/{user}$API_KEY_QUERY")
+    suspend fun getUserById(): Response<User>
+
+    @GET("/courses$API_KEY_QUERY")
+    suspend fun getCoursesId(): Response<User>
 }

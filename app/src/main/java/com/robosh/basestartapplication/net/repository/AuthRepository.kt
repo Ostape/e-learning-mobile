@@ -3,7 +3,7 @@ package com.robosh.basestartapplication.net.repository
 
 interface AuthRepository {
 
-    fun loginUser(email: String, password: String)
+    suspend fun loginUser(email: String, password: String)
 
-    fun getUser()
+    suspend fun getUser()
 }
