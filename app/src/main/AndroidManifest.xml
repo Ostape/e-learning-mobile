@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".lessondetail.view.LessonDetailActivity" />
+        <activity android:name=".lessondetail.view.LessonDetailActivity"
+            android:label="@string/lessonDetailsTitle"/>
 
         <receiver android:name=".receiver.AlarmNotificationReceiver" />
     </application>

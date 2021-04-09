@@ -2,6 +2,7 @@ package com.robosh.basestartapplication.lessondetail.view
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -26,6 +27,9 @@ class LessonDetailActivity : YouTubeBaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLessonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setActionBar(binding.toolbar)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         cachedLesson = intent.extras?.get(INTENT_LESSON_KEY) as Lesson?
         commentsAdapter = CommentsAdapter()
         with(binding.lessonCommentList) {
@@ -37,7 +41,6 @@ class LessonDetailActivity : YouTubeBaseActivity() {
         }
         commentsAdapter.setData(cachedLesson?.comments ?: emptyList())
         initViews(cachedLesson)
-
 
         onInitializedListener = object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
@@ -62,6 +65,7 @@ class LessonDetailActivity : YouTubeBaseActivity() {
         binding.youtubePlayerId.initialize(API_KEY, onInitializedListener)
     }
 
+
     private fun initViews(lesson: Lesson?) {
         lesson?.let {
             with(binding) {
@@ -69,8 +73,11 @@ class LessonDetailActivity : YouTubeBaseActivity() {
                 Picasso.get().load(lesson.imageLesson).into(detailLessonImage)
                 detailLessonDescription.text = lesson.text
                 lessonDuration.text = "Тривалість уроку: ${lesson.durationMinutes} хвилин"
-                lessonDeadline.text = "Дедлайн: ${DateFormat.getDateInstance().format(lesson.deadline)}"
+                lessonDeadline.text =
+                    "Дедлайн: ${DateFormat.getDateInstance().format(lesson.deadline)}"
             }
         }
     }
+
+
 }
