@@ -11,6 +11,15 @@
         android:layout_height="wrap_content"
         tools:visibility="visible">
 
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <TextView
             android:id="@+id/detailLessonTitle"
             android:layout_width="0dp"
@@ -56,7 +65,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/loader"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <View
             android:id="@+id/lineDivider"
