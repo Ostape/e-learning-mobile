@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
-        android:name="com.robosh.basestartapplication.wishlist.WishListFragment"
+        android:name="com.robosh.basestartapplication.wishlist.view.WishListFragment"
         android:label="Збереженні" />
 
     <fragment

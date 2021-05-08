@@ -1,4 +1,4 @@
-package com.robosh.basestartapplication.wishlist
+package com.robosh.basestartapplication.wishlist.view
 
 import android.os.Bundle
 import android.util.Log
@@ -41,8 +41,6 @@ class WishListFragment : Fragment(), DetailCoursesClickCallback, SubscribeCourse
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         coursesAdapter.setData(registeredUser.wishListCourses ?: emptyList())
-
-        Log.d("TAGGERR", registeredUser.wishListCourses.toString())
     }
 
     private fun initRecyclerView() {
