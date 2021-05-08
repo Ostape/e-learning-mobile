@@ -4,8 +4,6 @@ import com.robosh.basestartapplication.model.Course
 import com.robosh.basestartapplication.model.Lesson
 import com.robosh.basestartapplication.net.api.ElearningApi
 import com.robosh.basestartapplication.net.data.coursesList
-import com.robosh.basestartapplication.net.model.MovieListResponse
-import com.robosh.basestartapplication.net.model.MovieResponse
 import retrofit2.Response
 import java.util.*
 import javax.inject.Inject

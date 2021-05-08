@@ -58,7 +58,12 @@ class AccountFragment : Fragment() {
     private fun render(accountState: AccountState) {
         when (accountState) {
             is AccountState.AccountData -> renderUserData(accountState.user)
+            is AccountState.Error -> renderErrorState()
         }
+    }
+
+    private fun renderErrorState() {
+
     }
 
     private fun renderUserData(user: User) {

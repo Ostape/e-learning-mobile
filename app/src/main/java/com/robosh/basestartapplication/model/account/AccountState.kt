@@ -6,4 +6,5 @@ sealed class AccountState {
 
     data class AccountData(val user: User) : AccountState()
     object Idle : AccountState()
+    object Error : AccountState()
 }
