@@ -68,7 +68,9 @@ class AccountFragment : Fragment() {
 
     private fun renderUserData(user: User) {
         with(binding) {
-            Picasso.get().load(user.avatarUrl).into(userAvatar)
+            Picasso.get()
+                .load(user.avatarUrl)
+                .into(userAvatar)
             username.text = "${user.name} ${user.surname}"
             userEmail.text = user.email
         }

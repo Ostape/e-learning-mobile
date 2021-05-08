@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -19,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Орест Шемелюк"
+        tools:text="Орест Шемелюк"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +31,7 @@
         android:id="@+id/userEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="orestshemelyuk@gmail.com"
+        tools:text="orestshemelyuk@gmail.com"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/username"
@@ -40,7 +41,7 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Студент"
+        tools:text="Студент"
         app:layout_constraintStart_toStartOf="@id/userEmail"
         app:layout_constraintTop_toBottomOf="@id/userEmail" />
 

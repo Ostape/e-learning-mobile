@@ -1,5 +1,6 @@
 package com.robosh.basestartapplication.net.mapper
 
+import com.robosh.basestartapplication.application.DEFAULT_USER_AVATAR
 import com.robosh.basestartapplication.model.User
 import com.robosh.basestartapplication.net.model.UserResponse
 import javax.inject.Inject
@@ -14,7 +15,7 @@ class UserMapper @Inject constructor() {
                 phone,
                 name,
                 surname,
-                avatar
+                avatar ?: DEFAULT_USER_AVATAR
             )
         }
     }

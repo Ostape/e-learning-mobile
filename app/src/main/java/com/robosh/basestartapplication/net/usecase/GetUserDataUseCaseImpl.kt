@@ -12,10 +12,9 @@ class GetUserDataUseCaseImpl @Inject constructor(
 
     override suspend fun execute(): AccountState {
         val userDataResponse = elearningApiRepository.getUserData()
-        if (userDataResponse.isSuccessful) {
-//            AccountState.AccountData()
-        }
-
-        return AccountState.Error
+        val userBody = userDataResponse.body()
+        return if (userDataResponse.isSuccessful && userBody != null) {
+            AccountState.AccountData(userMapper.map(userBody))
+        } else AccountState.Error
     }
 }
