@@ -38,7 +38,7 @@ class LoginViewModel @Inject constructor(
             when (loginEvent) {
                 is LoginEvent.UserLoginClicked -> {
                     _state.value = authUseCase.execute(
-                        loginEvent.email,
+                        loginEvent.username,
                         loginEvent.password
                     )
                 }

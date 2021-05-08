@@ -2,10 +2,10 @@ package com.robosh.basestartapplication.net.di
 
 import com.robosh.basestartapplication.net.RetrofitClientInstance
 import com.robosh.basestartapplication.net.api.ElearningApi
-import com.robosh.basestartapplication.net.repository.AuthRepository
-import com.robosh.basestartapplication.net.repository.AuthRepositoryImpl
 import com.robosh.basestartapplication.net.repository.CoursesRepository
 import com.robosh.basestartapplication.net.repository.CoursesRepositoryImpl
+import com.robosh.basestartapplication.net.repository.ElearningApiRepository
+import com.robosh.basestartapplication.net.repository.ElearningApiRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +33,6 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository =
+    fun provideAuthRepository(authRepositoryImpl: ElearningApiRepositoryImpl): ElearningApiRepository =
         authRepositoryImpl
 }

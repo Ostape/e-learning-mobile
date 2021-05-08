@@ -10,7 +10,7 @@
     <string name="news_title">Новини</string>
     <string name="courses_title">Курси</string>
     <string name="account">Акаунт</string>
-    <string name="enterEmail">Email address</string>
+    <string name="enterUsername">Username</string>
     <string name="enterPassword">Password</string>
     <string name="loginButtonText">Увійти</string>
     <string name="comments">Коментарі</string>

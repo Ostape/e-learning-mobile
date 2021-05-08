@@ -18,6 +18,7 @@ import com.robosh.basestartapplication.databinding.FragmentAccountBinding
 import com.robosh.basestartapplication.model.User
 import com.robosh.basestartapplication.model.account.AccountEvent
 import com.robosh.basestartapplication.model.account.AccountState
+import com.robosh.basestartapplication.net.RetrofitClientInstance
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -31,9 +32,7 @@ class AccountFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPreferences =
-            requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
-        if (sharedPreferences.getBoolean(USER_LOGGED_IN_TOKEN, false).not()) {
+        if (RetrofitClientInstance.YOUR_TOKEN.isEmpty()) {
             findNavController().navigate(R.id.action_accountFragment_to_loginFragment)
         }
     }

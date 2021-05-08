@@ -1,19 +1,22 @@
 package com.robosh.basestartapplication.net.usecase
 
 import com.robosh.basestartapplication.model.login.LoginState
-import com.robosh.basestartapplication.net.repository.AuthRepository
+import com.robosh.basestartapplication.net.RetrofitClientInstance
+import com.robosh.basestartapplication.net.model.UserLoginRequest
+import com.robosh.basestartapplication.net.repository.ElearningApiRepository
 import javax.inject.Inject
 
 class AuthUseCaseImpl @Inject constructor(
-    private val authRepository: AuthRepository
+    private val elearningApiRepository: ElearningApiRepository
 ) : AuthUseCase {
 
-    override suspend fun execute(email: String, password: String): LoginState {
-        authRepository.loginUser(email, password) // should get Return
-        return if (email == "orestshemelyuk@gmail.com" && password == "pass1") {
+    override suspend fun execute(username: String, password: String): LoginState {
+        val loginResponse = elearningApiRepository.loginUser(UserLoginRequest(username, password))
+        return if (loginResponse.isSuccessful) {
+            RetrofitClientInstance.YOUR_TOKEN = loginResponse.body()?.token ?: ""
             LoginState.LoginSuccess
         } else {
-            LoginState.LoginError("Smth went wrong")
+            LoginState.LoginError(loginResponse.errorBody().toString())
         }
     }
 }

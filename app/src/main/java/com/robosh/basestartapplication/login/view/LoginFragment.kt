@@ -1,6 +1,5 @@
 package com.robosh.basestartapplication.login.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.robosh.basestartapplication.R
-import com.robosh.basestartapplication.application.SHARED_PREFS_FILE
-import com.robosh.basestartapplication.application.USER_LOGGED_IN_TOKEN
 import com.robosh.basestartapplication.databinding.FragmentLoginBinding
 import com.robosh.basestartapplication.login.presenter.LoginViewModel
 import com.robosh.basestartapplication.model.login.LoginEvent
@@ -58,7 +55,7 @@ class LoginFragment : Fragment() {
         binding.errorBanner.visibility = VISIBLE
         binding.errorBanner.postDelayed({
             binding.errorBanner.visibility = GONE
-        }, 1000)
+        }, 4000)
         loginViewModel.intentChannel.offer(LoginEvent.UpdateEvent)
     }
 
@@ -66,7 +63,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             loginViewModel.intentChannel.offer(
                 LoginEvent.UserLoginClicked(
-                    binding.emailInputEditText.text.toString(),
+                    binding.usernameInputEditText.text.toString(),
                     binding.passwordInputEditText.text.toString()
                 )
             )
@@ -74,9 +71,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToAccountScreen() {
-        val sharedPreferences =
-            requireActivity().getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
-        sharedPreferences.edit().putBoolean(USER_LOGGED_IN_TOKEN, true).apply()
         findNavController().navigate(R.id.action_loginFragment_to_accountFragment)
     }
 }

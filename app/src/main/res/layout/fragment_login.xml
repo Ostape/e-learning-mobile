@@ -36,16 +36,16 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailInputLayout"
+            android:id="@+id/usernameInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
-            android:hint="@string/enterEmail"
+            android:hint="@string/enterUsername"
             android:paddingStart="@dimen/margin_medium"
             android:paddingEnd="@dimen/margin_medium">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailInputEditText"
+                android:id="@+id/usernameInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
