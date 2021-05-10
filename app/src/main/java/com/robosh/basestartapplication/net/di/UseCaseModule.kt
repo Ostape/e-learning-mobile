@@ -13,7 +13,7 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideGetCoursesUseCase(getMoviesUseCaseImpl: GetMoviesUseCaseImpl): GetMoviesUseCase =
+    fun provideGetCoursesUseCase(getMoviesUseCaseImpl: GetCoursesUseCaseImpl): GetCoursesUseCase =
         getMoviesUseCaseImpl
 
     @Provides

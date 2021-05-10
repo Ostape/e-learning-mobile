@@ -2,6 +2,7 @@ package com.robosh.basestartapplication.net.repository
 
 import com.robosh.basestartapplication.net.RetrofitClientInstance
 import com.robosh.basestartapplication.net.api.ElearningApi
+import com.robosh.basestartapplication.net.model.CourseResponse
 import com.robosh.basestartapplication.net.model.UserLoginRequest
 import com.robosh.basestartapplication.net.model.UserResponse
 import com.robosh.basestartapplication.net.model.UserTokenResponse
@@ -18,5 +19,9 @@ class ElearningApiRepositoryImpl @Inject constructor(
 
     override suspend fun getUserData(): Response<UserResponse> {
         return elearningApi.getUserData(RetrofitClientInstance.YOUR_TOKEN)
+    }
+
+    override suspend fun getAllCourses(): Response<List<CourseResponse>> {
+        return elearningApi.getAllCourses()
     }
 }

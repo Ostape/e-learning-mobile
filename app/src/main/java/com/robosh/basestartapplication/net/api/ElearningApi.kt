@@ -1,5 +1,7 @@
 package com.robosh.basestartapplication.net.api
 
+import com.robosh.basestartapplication.model.Course
+import com.robosh.basestartapplication.net.model.CourseResponse
 import com.robosh.basestartapplication.net.model.UserLoginRequest
 import com.robosh.basestartapplication.net.model.UserResponse
 import com.robosh.basestartapplication.net.model.UserTokenResponse
@@ -20,4 +22,7 @@ interface ElearningApi {
 
     @GET("$BASE_PREFIX/users/user-data")
     suspend fun getUserData(@Header("Authorization") auth: String): Response<UserResponse>
+
+    @GET("$BASE_PREFIX/courses/all")
+    suspend fun getAllCourses(): Response<List<CourseResponse>>
 }

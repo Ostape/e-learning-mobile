@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robosh.basestartapplication.model.CourseEvent
 import com.robosh.basestartapplication.model.CourseState
-import com.robosh.basestartapplication.net.usecase.GetMoviesUseCase
+import com.robosh.basestartapplication.net.usecase.GetCoursesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class CoursesViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase
+    private val getCoursesUseCase: GetCoursesUseCase
 ) : ViewModel() {
 
     val intentChannel = Channel<CourseEvent>(Channel.UNLIMITED)
@@ -34,14 +34,14 @@ class CoursesViewModel @Inject constructor(
 
     @VisibleForTesting
     suspend fun obtainEvent() {
-        intentChannel.consumeEach { movieEvent ->
-            when (movieEvent) {
-                is CourseEvent.CoursesFetch -> _state.value = getMoviesUseCase.execute()
+        intentChannel.consumeEach { courseEvent ->
+            when (courseEvent) {
+                is CourseEvent.CoursesFetch -> _state.value = getCoursesUseCase.execute()
                 is CourseEvent.CourseSubscribeClicked -> _state.value =
-                    CourseState.CourseSubscribeClickedState(movieEvent.course)
+                    CourseState.CourseSubscribeClickedState(courseEvent.course)
                 is CourseEvent.CourseNotified -> Unit
                 is CourseEvent.CourseDetailClicked -> _state.value =
-                    CourseState.CourseDetailClickedState(movieEvent.course)
+                    CourseState.CourseDetailClickedState(courseEvent.course)
                 is CourseEvent.CoursesIdle -> _state.value = CourseState.Idle
             }
         }
