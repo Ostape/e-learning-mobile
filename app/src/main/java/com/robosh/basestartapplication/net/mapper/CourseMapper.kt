@@ -13,24 +13,26 @@ class CourseMapper @Inject constructor() {
             "https://www.corporatecomplianceinsights.com/wp-content/uploads/2020/08/lesson.jpg"
     }
 
-    fun map(courseResponse: CourseResponse): Course {
+    fun map(courseResponse: List<CourseResponse>): List<Course> {
 
-        val lessons = courseResponse.lessons.map {
-            Lesson(
-                it.id,
-                it.name,
-                it.durationMinutes,
-                it.description,
-                it.imageLesson ?: DEFAULT_IMAGE_LESSON,
-                it.videoUrl,
-                it.comments?.map { commentResponse ->
-                    Comment(commentResponse.id, commentResponse.text, commentResponse.userId)
-                }
-            )
+        val lessons = courseResponse.flatMap {courseResponse->
+            courseResponse.lessons.map {
+                Lesson(
+                    it.id,
+                    it.name,
+                    it.durationMinutes,
+                    it.description,
+                    it.imageLesson ?: DEFAULT_IMAGE_LESSON,
+                    it.videoUrl,
+                    it.comments?.map { commentResponse ->
+                        Comment(commentResponse.id, commentResponse.text, commentResponse.userId)
+                    }
+                )
+            }
         }
 
-        return with(courseResponse) {
-            Course(id, name, description, photoPreview, rating, lessons)
+        return courseResponse.map {
+            Course(it.id, it.name, it.description, it.photoPreview, it.rating, lessons)
         }
     }
 }
