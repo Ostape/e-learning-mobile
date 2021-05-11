@@ -6,13 +6,14 @@ import java.util.*
 
 @Parcelize
 data class Lesson(
-    val id: String,
-    val number: String,
+    val id: Long,
+//    val number: String,
     val name: String,
     val durationMinutes: Int,
     val text: String,
     val imageLesson: String,
     val videoUrl: String? = "",
-    val comments: List<Comment>?,
-    val deadline: Date
+    val comments: List<Comment>?
+//    ,
+//    val deadline: Date
 ) : Parcelable

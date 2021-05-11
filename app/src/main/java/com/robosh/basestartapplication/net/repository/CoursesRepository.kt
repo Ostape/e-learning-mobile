@@ -6,5 +6,5 @@ interface CoursesRepository {
 
     suspend fun getCourseListReference(): List<Course>
 
-    suspend fun getCourseById(courseId: String): Course
+    suspend fun getCourseById(courseId: String): Course?
 }

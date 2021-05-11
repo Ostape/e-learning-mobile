@@ -89,7 +89,7 @@ class CoursesFragment : Fragment(),
     override fun onDetailCourseClicked(course: Course) {
         findNavController().navigate(
             R.id.action_coursesFragment_to_detailsCourseFragment,
-            Bundle().apply { putString(INTENT_MOVIE_KEY, course.id) }
+            Bundle().apply { putLong(INTENT_MOVIE_KEY, course.id) }
         )
     }
 

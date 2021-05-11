@@ -17,6 +17,7 @@ class GetOneMovieUseCaseImpl @Inject constructor(
 //                CourseState.SingleDataState(movieMapper.map(listOf(it)).first())
 //            } ?: CourseState.ErrorState("Movie response is null")
 //        } else CourseState.ErrorState("Some error occurred: ${movieResponse.errorBody()}")
-        return CourseState.SingleDataState(courseResponse)
+//        return CourseState.SingleDataState(courseResponse)
+        return CourseState.LoadingState
     }
 }

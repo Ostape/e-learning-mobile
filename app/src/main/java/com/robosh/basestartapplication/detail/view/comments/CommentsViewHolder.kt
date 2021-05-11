@@ -28,8 +28,7 @@ class CommentsViewHolder private constructor(
 
     fun bind(comment: Comment) {
         with(binding) {
-            Picasso.get().load(comment.avatar).into(userAvatar)
-            userName.text = comment.nickname
+//            userName.text = comment.nickname
             commentText.text = comment.text
         }
     }

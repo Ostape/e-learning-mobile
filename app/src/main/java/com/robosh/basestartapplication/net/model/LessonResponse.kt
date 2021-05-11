@@ -8,7 +8,7 @@ data class LessonResponse(
     @SerializedName("description")
     val description: String,
     @SerializedName("durationMinutes")
-    val durationMinutes: String,
+    val durationMinutes: Int,
     @SerializedName("imageLesson")
     val imageLesson: String?,
     @SerializedName("name")

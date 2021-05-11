@@ -73,8 +73,6 @@ class LessonDetailActivity : YouTubeBaseActivity() {
                 Picasso.get().load(lesson.imageLesson).into(detailLessonImage)
                 detailLessonDescription.text = lesson.text
                 lessonDuration.text = "Тривалість уроку: ${lesson.durationMinutes} хвилин"
-                lessonDeadline.text =
-                    "Дедлайн: ${DateFormat.getDateInstance().format(lesson.deadline)}"
             }
         }
     }

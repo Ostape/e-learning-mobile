@@ -33,7 +33,6 @@ class LessonsViewHolder private constructor(
     fun bind(lesson: Lesson) {
         with(binding) {
             Picasso.get().load(lesson.imageLesson).into(imageLesson)
-            lessonNumber.text = "Урок №${lesson.number}"
             lessonDuration.text = "${lesson.durationMinutes} хвилин"
             lessonDescription.text = lesson.text
             lessonIdViewHolder.setOnClickListener(

@@ -61,8 +61,8 @@ class DetailCourseFragment : Fragment(), ClickLessonCallback {
         detailViewModel.state.onEach {
             render(it)
         }.launchIn(lifecycleScope)
-        arguments?.getString(INTENT_MOVIE_KEY)?.let {
-            detailViewModel.intentChannel.offer(CourseEvent.CourseNotified(it))
+        arguments?.getLong(INTENT_MOVIE_KEY)?.let {
+//            detailViewModel.intentChannel.offer(CourseEvent.CourseNotified(it))
         }
     }
 

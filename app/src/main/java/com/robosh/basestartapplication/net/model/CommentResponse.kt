@@ -10,5 +10,5 @@ data class CommentResponse(
     @SerializedName("text")
     val text: String,
     @SerializedName("userId")
-    val userId: String
+    val userId: Long
 )
